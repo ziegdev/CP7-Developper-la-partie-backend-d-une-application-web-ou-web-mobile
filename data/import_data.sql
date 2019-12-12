@@ -743,10 +743,10 @@ INSERT INTO "app_users" ("id", "firstname", "lastname", "email", "password", "st
 -- Déchargement des données de la table "levels"
 --
 
-INSERT INTO "levels" ("id", "name", "status", "created_at", "updated_at") VALUES
-(1, 'Débutant', 1, '2018-09-26 14:29:59', NULL),
-(2, 'Confirmé', 1, '2018-09-26 14:29:59', NULL),
-(3, 'Expert', 1, '2018-09-26 14:29:59', NULL);
+INSERT INTO "levels" ("name", "status", "created_at", "updated_at") VALUES
+('Débutant', 1, '2018-09-26 14:29:59', NULL),
+('Confirmé', 1, '2018-09-26 14:29:59', NULL),
+('Expert', 1, '2018-09-26 14:29:59', NULL);
 
 --
 -- Déchargement des données de la table "questions"
