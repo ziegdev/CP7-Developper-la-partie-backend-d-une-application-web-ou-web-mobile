@@ -1,0 +1,55 @@
+
+class CoreModel {
+  id;
+  status;
+  created_at;
+  updated_at;
+
+  getId() {
+    return this.id;
+  };
+  // pas de setId ?
+
+  
+  getStatus() {
+    return this.status;
+  };
+
+  setStatus(value) {
+    if (!Number.isInteger(value)) {
+      throw Error('Model.status must be an integer');
+    } else {
+      this.status = value;
+    }
+  };
+
+
+  getCreatedAt() {
+    return this.created_at;
+  };
+
+  setCreatedAt(value) {
+    if (!Number.isInteger(value)) {
+      throw Error('Model.created_at must be an integer');
+    } else {
+      this.created_at = value;
+    }
+  };
+
+  getUpdatedAt() {
+    return this.updated_at;
+  };
+
+  setUpdatedAt() {
+    if (!Number.isInteger(value)) {
+      throw Error('Model.updated_at must be an integer');
+    } else {
+      this.updated_at = value;
+    }
+  };
+
+};
+
+
+
+module.exports = CoreModel;
