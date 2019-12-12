@@ -1,7 +1,6 @@
 
 class CoreModel {
   id;
-  status;
   created_at;
   updated_at;
 
@@ -9,20 +8,6 @@ class CoreModel {
     return this.id;
   };
   // pas de setId ?
-
-  
-  getStatus() {
-    return this.status;
-  };
-
-  setStatus(value) {
-    if (!Number.isInteger(value)) {
-      throw Error('Model.status must be an integer');
-    } else {
-      this.status = value;
-    }
-  };
-
 
   getCreatedAt() {
     return this.created_at;

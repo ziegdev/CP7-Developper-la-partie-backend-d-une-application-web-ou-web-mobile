@@ -2,6 +2,7 @@ const CoreModel = require('./coreModel');
 
 class Answer extends CoreModel {
   description;
+  status;
   questions_id;
 
 
@@ -14,6 +15,18 @@ class Answer extends CoreModel {
       throw Error('Answer.description must be a string');
     } else {
       this.description = value;
+    }
+  };
+
+  getStatus() {
+    return this.status;
+  };
+
+  setStatus(value) {
+    if (!Number.isInteger(value)) {
+      throw Error('Level.status must be an integer');
+    } else {
+      this.status = value;
     }
   };
 

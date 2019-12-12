@@ -1,11 +1,12 @@
 const emailValidator = require('email-validator');
 const CoreModel = require('./coreModel');
 
-class User {
+class User extends CoreModel {
   email;
   password;
   firstname;
   lastname;
+  status;
 
   getEmail() {
     return this.email;
@@ -56,6 +57,18 @@ class User {
     }
   };
 
+  getStatus() {
+    return this.status;
+  };
+
+  setStatus(value) {
+    if (!Number.isInteger(value)) {
+      throw Error('Level.status must be an integer');
+    } else {
+      this.status = value;
+    }
+  };
+
 };
 
-module.exports = User,;
+module.exports = User;
