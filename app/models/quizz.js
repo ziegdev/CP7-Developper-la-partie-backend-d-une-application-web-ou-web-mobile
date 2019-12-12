@@ -6,6 +6,14 @@ class Quizz extends CoreModel {
   status;
   app_users_id;
 
+  constructor(obj) {
+    super(obj);
+    this.title = obj.title;
+    this.description = obj.description;
+    this.status = obj.status;
+    this.app_users_id = obj.app_users_id;
+  };
+
   getTitle() {
     return this.title;
   };

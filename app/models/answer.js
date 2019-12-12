@@ -5,6 +5,12 @@ class Answer extends CoreModel {
   status;
   questions_id;
 
+  constructor(obj) {
+    super(obj);
+    this.description = obj.description;
+    this.status = obj.status;
+    this.questions_id = obj;
+  };
 
   getDescription() {
     return this.description;

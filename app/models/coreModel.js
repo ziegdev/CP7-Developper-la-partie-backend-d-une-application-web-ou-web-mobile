@@ -4,6 +4,12 @@ class CoreModel {
   created_at;
   updated_at;
 
+  constructor(obj) {
+    this.id = obj.id;
+    this.created_at = obj.created_at;
+    this.updated_at = obj.updated_at;
+  };
+
   getId() {
     return this.id;
   };

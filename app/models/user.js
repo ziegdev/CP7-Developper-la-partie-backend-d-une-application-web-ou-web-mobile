@@ -8,6 +8,15 @@ class User extends CoreModel {
   lastname;
   status;
 
+  constructor(obj) {
+    super(obj);
+    this.email = obj.email;
+    this.password = obj.password;
+    this.firstname = obj.firstname;
+    this.lastname = obj.lastname;
+    this.status = obj.status;
+  };
+
   getEmail() {
     return this.email;
   };
