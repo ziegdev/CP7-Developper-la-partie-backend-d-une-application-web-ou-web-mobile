@@ -200,6 +200,51 @@ class CoreModel {
     // TODO : better error handling
   };
 
+
+  /**
+   * Méthodes AR poussées
+   * (correction du challenge S5E4)
+   */
+
+  static findBy(params, callback) {
+    let query = `SELECT * FROM ${this.tableName} WHERE 1=1 `;
+    // astuce de fou : on met "WHERE 1=1" histoire de pouvoir concaténer les tests suivants avec des "AND" sans se poser de questions !
+  
+    // allez hop, version moderne, on arrête les Object.keys
+    for( let prop in params) {
+      query += ` AND "${prop}" = '${params[prop]}'`;
+    }
+    
+    // et la, même traitement que dans les autres "find"
+    DBConnection.makeQuery(query, (err, results) => {
+      if (err) {
+        return callback(err, null);
+      }
+
+      if (!results.rowCount) {
+        return callback(null, []);
+      } else {
+        let trueResult = [];
+        for(let obj of results.rows) {
+          trueResult.push(new this(obj));
+        }
+        callback(err, trueResult);
+      }
+    });
+  };
+
+  save(callback) {
+    // ici, il "suffit" de tester si l'instance courante a déjà un id
+    // si c'est le cas, on update
+    // sinon, on insert !
+    if(this.getId()) {
+      return this.update(callback);
+    } else {
+      return this.insert(callback);
+    }
+    // et c'est tout !
+  };
+
 };
 
 

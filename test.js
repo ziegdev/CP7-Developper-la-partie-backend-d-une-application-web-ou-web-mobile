@@ -16,9 +16,9 @@ const Level = require('./app/models/level');
 
 
 /* Deuxième version, rendue statique */
-Level.findAll( (err, results) => {
-  console.log(err, results);
-});
+// Level.findAll( (err, results) => {
+//   console.log(err, results);
+// });
 
 
 /**
@@ -69,3 +69,14 @@ Level.findAll( (err, results) => {
 //   //2. le supprimer !
 //   level.delete( console.log );
 // });
+
+
+/**
+ * Model.findBy
+ */
+
+const User = require('./app/models/user');
+
+User.findBy({firstname: "Philippe"}, (err, users) => {
+  console.log(err, users);
+});
