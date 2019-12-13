@@ -6,6 +6,9 @@ class Quizz extends CoreModel {
   status;
   app_users_id;
 
+  // on surcharge le nom de la table !
+  static tableName = "quizzes";
+
   constructor(obj) {
     super(obj);
     this.title = obj.title;

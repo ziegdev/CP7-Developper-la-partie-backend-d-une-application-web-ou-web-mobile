@@ -5,6 +5,9 @@ class Answer extends CoreModel {
   status;
   questions_id;
 
+  // on surcharge le nom de la table !
+  static tableName = "answers";
+
   constructor(obj) {
     super(obj);
     this.description = obj.description;

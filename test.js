@@ -17,7 +17,7 @@ const Level = require('./app/models/level');
 
 /* Deuxième version, rendue statique */
 Level.findAll( (err, results) => {
-  console.log(results);
+  console.log(err, results);
 });
 
 
@@ -48,8 +48,8 @@ Level.findAll( (err, results) => {
  * Level.update
  */
 
-//  //1. récupérer le "level"
-// Level.findById(4, (err, level) => {
+ //1. récupérer le "level"
+// Level.findById(6, (err, level) => {
 //   //2. modifier ses données
 //   level.setName("Vraiment très dur");
 
