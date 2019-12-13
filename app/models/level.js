@@ -89,9 +89,15 @@ class Level extends CoreModel {
   };
 
   insert(callback) {
-    const currentTimestamp = Date.now();
+    /**
+     * Note:  en l'état, la méthode ne modifie que l'id de l'objet courant
+     * on pourrait l'améliorer en rajoutant "returning created_at, updated_at"
+     * et ainsi mettre à jour les timestamps
+     * A FAIRE EN BONUS SI LE TEMPS LE PERMET
+     */
+
     const query = `INSERT INTO "levels"("name", "status", "created_at", "updated_at") VALUES
-    ('${this.name}', ${this.status}, TO_TIMESTAMP(${currentTimestamp}), TO_TIMESTAMP(${currentTimestamp}) )
+    ('${this.name}', ${this.status}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP )
     RETURNING id`;
 
     DBConnection.makeQuery(query, (err, result) => {
@@ -99,9 +105,46 @@ class Level extends CoreModel {
         return callback(err, null);
       }
 
-      callback(null, result);
+      if (result.rowCount) {
+        // grace à "RETURNING id", on peut récupérer l'id de l'objet nouvellement inséré
+        // on a plus qu'à le mettre dans l'objet courant
+        this.id = result.rows[0].id;
+        // puis on appelle le callback en lui passant l'instance courante
+        callback(null, this);
+
+      } else {
+        // si pas de retour, il s'est passé quelquechose de bizarre...
+        callback('Insert did not return any id.', this);
+      }
     });
-  }
+  };
+
+
+  update(callback) {
+    const query = `UPDATE "levels" SET 
+    name = '${this.getName()}',
+    status = ${this.getStatus()},
+    updated_at = CURRENT_TIMESTAMP
+    WHERE id = ${this.getId()}`;
+    DBConnection.makeQuery(query, (err, result) => {
+      if (err) {
+        callback(err, null);
+      }
+
+      if (result.rowCount) {
+        // au moins une ligne a été modifié => tout va bien !
+        callback(null, this);
+      } else {
+        callback('Update did not target any rows', this);
+      }
+    });
+  };
+
+  delete(callback) {
+    const query = `DELETE FROM levels WHERE id=${this.getId()}`;
+    DBConnection.makeQuery(query, callback);
+    // TODO : better error handling
+  };
 
 };
 

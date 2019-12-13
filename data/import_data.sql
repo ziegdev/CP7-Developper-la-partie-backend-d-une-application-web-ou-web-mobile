@@ -743,10 +743,10 @@ INSERT INTO "app_users" ("id", "firstname", "lastname", "email", "password", "st
 -- Déchargement des données de la table "levels"
 --
 
-INSERT INTO "levels" ("name", "status", "created_at", "updated_at") VALUES
-('Débutant', 1, '2018-09-26 14:29:59', NULL),
-('Confirmé', 1, '2018-09-26 14:29:59', NULL),
-('Expert', 1, '2018-09-26 14:29:59', NULL);
+INSERT INTO "levels" ("id", "name", "status", "created_at", "updated_at") VALUES
+(1, 'Débutant', 1, '2018-09-26 14:29:59', NULL),
+(2, 'Confirmé', 1, '2018-09-26 14:29:59', NULL),
+(3, 'Expert', 1, '2018-09-26 14:29:59', NULL);
 
 --
 -- Déchargement des données de la table "questions"
@@ -1012,3 +1012,13 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+/* PostGres DOES NOT INCREMENT when inserting with explicit id values ! */
+/* So we have to correctly set the value used for autoincrement */
+SELECT setval('levels_id_seq', (SELECT MAX(id) from "levels"));
+SELECT setval('answers_id_seq', (SELECT MAX(id) from "answers"));
+SELECT setval('app_users_id_seq', (SELECT MAX(id) from "app_users"));
+SELECT setval('questions_id_seq', (SELECT MAX(id) from "questions"));
+SELECT setval('quizzes_id_seq', (SELECT MAX(id) from "quizzes"));
+SELECT setval('quizzes_id_seq', (SELECT MAX(id) from "quizzes"));
+SELECT setval('tags_id_seq', (SELECT MAX(id) from "tags"));

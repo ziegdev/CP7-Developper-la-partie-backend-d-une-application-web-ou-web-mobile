@@ -34,11 +34,38 @@ Level.findAll( (err, results) => {
  * Level.insert
  */
 
-let newLevel = new Level({});
+// let newLevel = new Level({});
 
-newLevel.setName("Extrême");
-newLevel.setStatus(1);
+// newLevel.setName("Extrême");
+// newLevel.setStatus(1);
 
-newLevel.insert( (err, res) => {
-  console.log(err, res);
-});
+// newLevel.insert( (err, res) => {
+//   console.log(err, res);
+// });
+
+
+/**
+ * Level.update
+ */
+
+//  //1. récupérer le "level"
+// Level.findById(4, (err, level) => {
+//   //2. modifier ses données
+//   level.setName("Vraiment très dur");
+
+//   //3. lancer la sauvegarde !
+//   level.update( (err, res) => {
+//     console.log(err, res);
+//   });
+
+// });
+
+/**
+ * Level.delete
+ */
+
+// //1. récupérer un "level"
+// Level.findById(4, (err, level) => {
+//   //2. le supprimer !
+//   level.delete( console.log );
+// });
