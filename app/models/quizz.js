@@ -1,21 +1,9 @@
-const CoreModel = require('./coreModel');
+const sequelize = require('sequelize');
+const dbConnection = require('../dbConnection');
 
-class Quizz extends CoreModel {
-  title;
-  description;
-  status;
-  app_users_id;
+const User = require('./user');
 
-  // on surcharge le nom de la table !
-  static tableName = "quizzes";
-
-  constructor(obj) {
-    super(obj);
-    this.title = obj.title;
-    this.description = obj.description;
-    this.status = obj.status;
-    this.app_users_id = obj.app_users_id;
-  };
+class Quizz extends sequelize.Model {
 
   getTitle() {
     return this.title;
@@ -56,17 +44,40 @@ class Quizz extends CoreModel {
   };
 
 
-  getAppUserId() {
-    return this.app_users_id;
-  };
+  // getAppUserId() {
+  //   return this.app_users_id;
+  // };
 
-  setAppUserId(value) {
-    if (! Number.isInteger(value)) {
-      throw Error('Quizz.app_users_id must be an integer');
-    } else {
-      this.app_users_id = value;
-    }
-  };
+  // setAppUserId(value) {
+  //   if (! Number.isInteger(value)) {
+  //     throw Error('Quizz.app_users_id must be an integer');
+  //   } else {
+  //     this.app_users_id = value;
+  //   }
+  // };
 };
+
+Quizz.init({
+  title: sequelize.STRING,
+  description: sequelize.STRING,
+  status: sequelize.INTEGER
+},{
+  sequelize: dbConnection,
+  tableName: "quizzes",
+  createdAt: "created_at",
+  updatedAt: "updated_at"
+});
+
+// association !
+Quizz.belongsTo(User,{
+  foreignKey: "app_users_id",
+  as: "author"
+});
+
+// Et la réciproque.
+User.hasMany(Quizz,{
+  foreignKey:"app_users_id",
+  as: "quizzes"
+});
 
 module.exports = Quizz;

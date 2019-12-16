@@ -1,20 +1,5 @@
-const pg = require('pg');
+const sequelize = require('sequelize');
 
-class DBConnection {
-  pg_client;
+const dbConnection = new sequelize.Sequelize(process.env.PGSQL_URL);
 
-  constructor() {
-    this.pg_client = new pg.Client(process.env.PGSQL_URL);
-    this.pg_client.connect();
-  };
-
-  makeQuery(query, callback) {
-    this.pg_client.query(query, callback);
-  };
-
-};
-
-// on exporte une instance de la classe ! 
-// ainsi, require récupèrera toujours le même objet, et on évite de multiplier les connexions à la DB.
-
-module.exports = new DBConnection();
+module.exports = dbConnection;

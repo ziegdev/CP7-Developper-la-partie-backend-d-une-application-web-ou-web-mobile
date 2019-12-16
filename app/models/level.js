@@ -1,17 +1,7 @@
-const CoreModel = require('./coreModel');
+const sequelize = require('sequelize');
+const dbConnection = require('../dbConnection');
 
-class Level extends CoreModel {
-  name;
-  status;
-
-  // on surcharge le nom de la table !
-  static tableName = "levels";
-
-  constructor(obj) {
-    super(obj);
-    this.name = obj.name;
-    this.status = obj.status;
-  };
+class Level extends sequelize.Model {
 
   getName() {
     return this.name;
@@ -37,8 +27,20 @@ class Level extends CoreModel {
     }
   };
 
-
 };
+
+/**
+ * Nécessaire, requis par Sequelize
+ */
+Level.init({
+  name: sequelize.STRING,
+  status: sequelize.INTEGER
+},{
+  sequelize: dbConnection,
+  tableName: "levels",
+  createdAt: "created_at",
+  updatedAt: "updated_at"
+});
 
 // on exporte la class directement !
 module.exports = Level;

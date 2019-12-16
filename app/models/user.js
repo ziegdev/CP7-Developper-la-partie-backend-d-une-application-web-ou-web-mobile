@@ -1,24 +1,8 @@
 const emailValidator = require('email-validator');
-const CoreModel = require('./coreModel');
+const sequelize = require('sequelize');
+const dbConnection = require('../dbConnection');
 
-class User extends CoreModel {
-  email;
-  password;
-  firstname;
-  lastname;
-  status;
-
-  // on surcharge le nom de la table !
-  static tableName = "app_users";
-
-  constructor(obj) {
-    super(obj);
-    this.email = obj.email;
-    this.password = obj.password;
-    this.firstname = obj.firstname;
-    this.lastname = obj.lastname;
-    this.status = obj.status;
-  };
+class User extends sequelize.Model {
 
   getEmail() {
     return this.email;
@@ -81,6 +65,26 @@ class User extends CoreModel {
     }
   };
 
+
+  // petite fonction utilitaire
+  getFullName() {
+    return this.firstname+' '+this.lastname;
+  };
+
 };
+
+User.init({
+  email: sequelize.STRING,
+  password: sequelize.STRING,
+  firstname: sequelize.STRING,
+  lastname: sequelize.STRING,
+  status: sequelize.INTEGER
+},{
+  sequelize: dbConnection,
+  tableName: "app_users",
+  createdAt: "created_at",
+  updatedAt: "updated_at"
+});
+
 
 module.exports = User;
