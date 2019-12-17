@@ -1,19 +1,7 @@
-const CoreModel = require('./coreModel');
+const sequelize = require('sequelize');
+const dbConnection = require('../dbConnection');
 
-class Answer extends CoreModel {
-  description;
-  status;
-  questions_id;
-
-  // on surcharge le nom de la table !
-  static tableName = "answers";
-
-  constructor(obj) {
-    super(obj);
-    this.description = obj.description;
-    this.status = obj.status;
-    this.questions_id = obj;
-  };
+class Answer extends sequelize.Model {
 
   getDescription() {
     return this.description;
@@ -52,5 +40,15 @@ class Answer extends CoreModel {
   };
 
 };
+
+Answer.init({
+  description: sequelize.STRING,
+  status: sequelize.INTEGER
+},{
+  sequelize: dbConnection,
+  tableName: "answers",
+  createdAt: "created_at",
+  updatedAt: "updated_at"
+});
 
 module.exports = Answer;

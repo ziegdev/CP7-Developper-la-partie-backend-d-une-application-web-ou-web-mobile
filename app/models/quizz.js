@@ -2,6 +2,8 @@ const sequelize = require('sequelize');
 const dbConnection = require('../dbConnection');
 
 const User = require('./user');
+const Question = require('./question');
+const Tag = require('./tag');
 
 class Quizz extends sequelize.Model {
 
@@ -68,16 +70,49 @@ Quizz.init({
   updatedAt: "updated_at"
 });
 
-// association !
+/**
+ * Associations (=relations)
+ */
+
+// User
 Quizz.belongsTo(User,{
   foreignKey: "app_users_id",
   as: "author"
 });
 
-// Et la réciproque.
+// ...et la réciproque.
 User.hasMany(Quizz,{
   foreignKey:"app_users_id",
   as: "quizzes"
+});
+
+
+// Question
+Quizz.hasMany(Question, {
+  foreignKey: "quizzes_id",
+  as: "questions"
+});
+// et la réciproque
+Question.belongsTo(Quizz,{
+  foreignKey: "quizzes_id",
+  as: "quizz"
+});
+
+
+// tags, via la table de liaison
+Quizz.belongsToMany(Tag,{
+  as: "tags",
+  through: 'quizzes_has_tags',
+  foreignKey: 'quizzes_id',
+  otherKey: 'tags_id',
+  timestamps: false
+});
+Tag.belongsToMany(Quizz,{
+  as: "quizzes",
+  through: 'quizzes_has_tags',
+  otherKey: 'quizzes_id',
+  foreignKey: 'tags_id',
+  timestamps: false
 });
 
 module.exports = Quizz;
