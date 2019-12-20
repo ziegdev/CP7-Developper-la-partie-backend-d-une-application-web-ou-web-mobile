@@ -27,115 +27,16 @@
           </div>
           <div>
               <ul>
-                  <li>1. Lorem ipsum </li>
-                  <li>2. Lorem ipsum </li>
-                  <li>3. Lorem ipsum </li>
-                  <li>d. La réponse D </li>
+              <% for(let index in question.answers){ %>
+                  <li><%= parseInt(index) + 1 %>. <%= question.answers[index].getDescription() %></li>
+                <% } %>
               </ul> 
           </div>
       </div>
 
     
     <% } %>
-
-    <div class="col question">
-
-        <span class="level level--beginner">Débutant</span>
-
-        <div class="question__question">
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr. ?
-        </div>
-        <div>
-            <ul>
-                <li>1. Lorem ipsum </li>
-                <li>2. Lorem ipsum </li>
-                <li>3. Lorem ipsum </li>
-                <li>d. La réponse D </li>
-            </ul> 
-        </div>
-    </div>
-
-    <div class="col question">
-        <span class="level level--medium">Confirmé</span>
-        <div class="question__question"> 
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr. ?
-        </div>
-        <div>
-            <ul>
-                <li>1. Lorem ipsum </li>
-                <li>2. Lorem ipsum </li>
-                <li>3. Lorem ipsum </li>
-                <li>d. La réponse D </li>
-            </ul> 
-        </div>
-    </div>
-
-    <div class="col question">
-        <span class="level level--expert">Expert</span>
-        <div class="question__question">
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr. ?
-        </div>
-        <div>
-            <ul>
-                <li>1. Lorem ipsum </li>
-                <li>2. Lorem ipsum </li>
-                <li>3. Lorem ipsum </li>
-                <li>d. La réponse D </li>
-            </ul> 
-        </div>
-    </div>
-    
-</div>
-
-<div class="row">
-
-    <div class="col question">
-
-        <span class="level level--beginner">Débutant</span>
-
-        <div class="question__question">
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr. ?
-        </div>
-        <div>
-            <ul>
-                <li>1. Lorem ipsum </li>
-                <li>2. Lorem ipsum </li>
-                <li>3. Lorem ipsum </li>
-                <li>d. La réponse D </li>
-            </ul> 
-        </div>
-    </div>
-
-    <div class="col question">
-        <span class="level level--medium">Confirmé</span>
-        <div class="question__question"> 
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr. ?
-        </div>
-        <div>
-            <ul>
-                <li>1. Lorem ipsum </li>
-                <li>2. Lorem ipsum </li>
-                <li>3. Lorem ipsum </li>
-                <li>d. La réponse D </li>
-            </ul> 
-        </div>
-    </div>
-
-    <div class="col question">
-        <span class="level level--expert">Expert</span>
-        <div class="question__question">
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr. ?
-        </div>
-        <div>
-            <ul>
-                <li>1. Lorem ipsum </li>
-                <li>2. Lorem ipsum </li>
-                <li>3. Lorem ipsum </li>
-                <li>d. La réponse D </li>
-            </ul> 
-        </div>
-    </div>
-    
+  
 </div>
 
 <%- include('partials/footer') %>

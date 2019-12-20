@@ -73,20 +73,33 @@ Question.init({
 
 
 // les relations !!
-Question.hasOne(Answer,{
+
+// une question a plusieurs answers
+Question.hasMany(Answer,{
   foreignKey: "questions_id",
-  as: "answer"
+  as: "answers"
 });
+
+// réciproque : une answer est lié à une seule question
 Answer.belongsTo(Question,{
   foreignKey: "questions_id",
   as: "question"
 });
 
+// ATTENTION cas particulier : Question et Answer sont liés de 2 manières différentes!
+// en effet, il y a aussi "la bonne réponse" !
+Question.belongsTo(Answer,{
+  foreignKey: "answers_id",
+  as:"good_answer"
+});
 
+
+// une question a un niveau
 Question.belongsTo(Level,{
   foreignKey: "levels_id",
   as: "level"
 });
+// réciproque : un niveau concerne plusieurs questions
 Level.hasMany(Question, {
   foreignKey: "levels_id",
   as: "questions"

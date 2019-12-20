@@ -5,7 +5,10 @@ const quizzController = {
   quizzPage: (req, res) => {
     const quizzId = parseInt(req.params.id);
     Quizz.findByPk(quizzId,{
-      include: ['questions', 'author']
+      include: [
+        { association: 'author'},
+        { association: 'questions', include: ['answers']}
+      ]
     }).then( (quizz) => {
       res.render('quizz', {quizz});
     });
