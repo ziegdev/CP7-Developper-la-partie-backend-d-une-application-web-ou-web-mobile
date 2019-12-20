@@ -7,6 +7,13 @@
 </div>
 
 <div>
+ <% for (let tag of quizz.tags){ %>
+    <span class="tag tag--<%= tag.getName().toLowerCase() %>"><%= tag.getName() %></span>
+ <% } %>
+</div>
+
+
+<div>
     <h4> 
         <%= quizz.getDescription() %>
     </h4>

@@ -96,3 +96,49 @@ a {
   padding: 0.325rem 0;
   cursor: pointer;
 }
+
+.tag {
+  padding: 5px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  margin: 5px;
+  border-radius: 9px;
+}
+
+
+.tag--cinéma {
+  background-color: red;
+}
+
+.tag--technologie {
+  background-color: purple;
+}
+
+.tag--gastronomie {
+  background-color: lightgreen;
+}
+
+.tag--littérature {
+  background-color: brown;
+}
+
+.tag--histoire {
+  background-color: chartreuse;
+}
+
+.tag--animaux {
+  background-color: pink;
+}
+
+.tag--nature {
+  background-color: greenyellow;
+}
+
+.tag--astronomie {
+  background-color: black;
+  color: white;
+}
+
+.tag--géographie {
+  background-color: lightseagreen;
+}

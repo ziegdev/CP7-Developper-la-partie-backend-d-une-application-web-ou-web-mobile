@@ -8,6 +8,7 @@ const quizzController = {
       include: [
         { association: 'author'},
         { association: 'questions', include: ['answers', 'level']},
+        { association: 'tags'}
       ]
     }).then( (quizz) => {
       res.render('quizz', {quizz});
