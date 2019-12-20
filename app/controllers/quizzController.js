@@ -4,7 +4,9 @@ const quizzController = {
 
   quizzPage: (req, res) => {
     const quizzId = parseInt(req.params.id);
-    Quizz.findByPk(quizzId).then( (quizz) => {
+    Quizz.findByPk(quizzId,{
+      include: ['questions', 'author']
+    }).then( (quizz) => {
       res.render('quizz', {quizz});
     });
   }

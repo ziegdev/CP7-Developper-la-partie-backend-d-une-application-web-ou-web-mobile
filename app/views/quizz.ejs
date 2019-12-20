@@ -1,22 +1,42 @@
 <%- include('partials/header') %>
 
 <div>
-    <h2> Le chocolat - I 
-        <span>xx questions</span>
+    <h2> <%= quizz.getTitle() %>
+        <span><%= quizz.questions.length %> questions</span>
     </h2>
 </div>
 
 <div>
     <h4> 
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
+        <%= quizz.getDescription() %>
     </h4>
 </div>
 
 <div>
-    <p>by author name</p>
+    <p>by <%= quizz.author.getFullName() %></p>
 </div>
 
 <div class="row">
+
+    <% for(let question of quizz.questions) { %> 
+
+      <div class="col question">
+          <span class="level level--beginner">Débutant</span>
+          <div class="question__question">
+              <%= question.getQuestion() %>
+          </div>
+          <div>
+              <ul>
+                  <li>1. Lorem ipsum </li>
+                  <li>2. Lorem ipsum </li>
+                  <li>3. Lorem ipsum </li>
+                  <li>d. La réponse D </li>
+              </ul> 
+          </div>
+      </div>
+
+    
+    <% } %>
 
     <div class="col question">
 
