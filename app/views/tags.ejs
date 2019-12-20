@@ -12,9 +12,11 @@
 <div class="row">
 
   <% for (let tag of tags) { %> 
-    <div class="tag tag--<%= tag.getName().toLowerCase() %>">
-        <%= tag.getName() %>
-    </div>
+    <a href="/quizzes/tag/<%= tag.id %>">
+      <div class="tag tag--<%= tag.getName().toLowerCase() %>">
+          <%= tag.getName() %>
+      </div>
+    </a>
 
   <% } %>
 

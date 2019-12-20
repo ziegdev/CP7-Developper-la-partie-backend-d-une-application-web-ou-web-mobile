@@ -16,4 +16,7 @@ router.get('/quizz/:id', quizzController.quizzPage);
 // page "tags" ("sujets")
 router.get('/tags', tagController.tagList);
 
+// quizzes par tag
+router.get('/quizzes/tag/:id', quizzController.listByTag);
+
 module.exports = router;

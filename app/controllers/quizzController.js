@@ -1,4 +1,5 @@
 const Quizz = require('../models/quizz');
+const Tag = require('../models/tag');
 
 const quizzController = {
 
@@ -12,6 +13,22 @@ const quizzController = {
       ]
     }).then( (quizz) => {
       res.render('quizz', {quizz});
+    });
+  },
+
+  listByTag: (req, res) => {
+    // plutot que de faire une requete compliquée
+    // on va passer par le tag, et laisser les relations de Sequelize faire le taf !
+    const tagId = parseInt(req.params.id);
+    Tag.findByPk(tagId,{
+      include: [{
+        association: 'quizzes',
+        include: ['author']
+      }]
+    }).then( (tag) => {
+      res.render('index', {
+        quizzes: tag.quizzes
+      });
     });
   }
 
