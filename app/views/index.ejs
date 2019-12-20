@@ -14,8 +14,8 @@
   <% for (let quizz of quizzes) { %> 
     <div class="col">
         <h3><%= quizz.getTitle() %></h3>
-        <h5>Sous titre</h5>
-        <p>by author name</p>
+        <h5><%= quizz.getDescription() %></h5>
+        <p>by <%= quizz.author.getFullName() %></p>
     </div>
 
   <% } %>

@@ -3,7 +3,9 @@ const Quizz = require('../models/quizz');
 const mainController = {
 
   homePage: (req, res) => {
-    Quizz.findAll().then( (quizzes) => {
+    Quizz.findAll({
+      include: ['author']
+    }).then( (quizzes) => {
       res.render('index', {quizzes});
     });
   }
