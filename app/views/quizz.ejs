@@ -21,7 +21,7 @@
     <% for(let question of quizz.questions) { %> 
 
       <div class="col question">
-          <span class="level level--beginner">Débutant</span>
+          <span class="level level--<%= question.level.getName().toLowerCase() %>"><%= question.level.getName() %></span>
           <div class="question__question">
               <%= question.getQuestion() %>
           </div>

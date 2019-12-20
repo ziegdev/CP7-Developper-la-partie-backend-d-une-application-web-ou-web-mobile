@@ -7,7 +7,7 @@ const quizzController = {
     Quizz.findByPk(quizzId,{
       include: [
         { association: 'author'},
-        { association: 'questions', include: ['answers']}
+        { association: 'questions', include: ['answers', 'level']},
       ]
     }).then( (quizz) => {
       res.render('quizz', {quizz});

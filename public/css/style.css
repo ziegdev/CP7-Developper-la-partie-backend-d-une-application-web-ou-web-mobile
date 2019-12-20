@@ -60,11 +60,13 @@ a {
   font-size: 0.8em;
 }
 
-.level--beginner {
+.level--beginner,
+.level--débutant {
   color: darkgreen;
 }
 
-.level--medium {
+.level--medium,
+.level--confirmé {
   color: darkgoldenrod;
 }
 
