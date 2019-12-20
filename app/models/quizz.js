@@ -12,6 +12,10 @@ const Tag = require('./tag');
 
 class Quizz extends sequelize.Model {
 
+  getId() {
+    return this.id;
+  };
+
   getTitle() {
     return this.title;
   };

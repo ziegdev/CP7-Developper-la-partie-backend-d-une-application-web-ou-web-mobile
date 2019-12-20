@@ -1,19 +1,21 @@
 <%- include('partials/header') %>
 
 <div>
-    <h2> Bienvenue sur O'Quiz </h2>
-    <p>
+  <h2> Bienvenue sur O'Quiz </h2>
+  <p>
 
-    Une application sympa pour répondre à questions cool.
-    
-    </p>
+  Une application sympa pour répondre à questions cool.
+
+  </p>
 </div>
 
 <div class="row">
 
   <% for (let quizz of quizzes) { %> 
     <div class="col">
-        <h3><%= quizz.getTitle() %></h3>
+        <a href="/quizz/<%= quizz.getId() %>">
+          <h3><%= quizz.getTitle() %></h3>
+        </a>
         <h5><%= quizz.getDescription() %></h5>
         <p>by <%= quizz.author.getFullName() %></p>
     </div>
