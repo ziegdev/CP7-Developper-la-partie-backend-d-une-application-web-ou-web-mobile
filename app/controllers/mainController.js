@@ -1,7 +1,11 @@
+const Quizz = require('../models/quizz');
+
 const mainController = {
 
   homePage: (req, res) => {
-    res.render('index');
+    Quizz.findAll().then( (quizzes) => {
+      res.render('index', {quizzes});
+    });
   }
 
 };
