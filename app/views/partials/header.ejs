@@ -47,6 +47,15 @@
                                 Déconnexion
                             </a>
                         </li>
+
+                        <% if(user.role == "admin") { %>
+                            <li>
+                                <a href="/admin">
+                                    <i></i>
+                                    Admin
+                                </a>
+                            </li>
+                        <% } %>
                     <% } else { %>
                         <li>
                             <a href="/signup">

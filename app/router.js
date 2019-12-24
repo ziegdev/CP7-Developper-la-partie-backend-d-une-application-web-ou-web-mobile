@@ -5,6 +5,10 @@ const mainController = require('./controllers/mainController');
 const quizzController = require('./controllers/quizzController');
 const tagController = require('./controllers/tagController');
 const userController = require('./controllers/userController');
+const adminController = require('./controllers/adminController');
+
+// importer les middlewares
+const adminMiddleware = require('./middlewares/admin');
 
 const router = express.Router();
 
@@ -30,5 +34,8 @@ router.post('/login', userController.loginAction);
 router.get('/disconnect', userController.disconnect);
 
 router.get('/profile', userController.profilePage);
+
+// admin
+router.get('/admin', adminMiddleware, adminController.adminPage);
 
 module.exports = router;
