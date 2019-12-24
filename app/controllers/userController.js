@@ -91,6 +91,16 @@ const userController = {
   disconnect: (req, res) => {
     req.session.user = false;
     return res.redirect('/');
+  },
+
+  profilePage: (req, res) => {
+    if(!req.session.user) {
+      return res.redirect('/login');
+    }
+    
+    res.render('profile', {
+      user: req.session.user
+    });
   }
 
 };

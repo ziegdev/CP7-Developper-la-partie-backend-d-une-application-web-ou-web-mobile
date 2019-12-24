@@ -1,0 +1,23 @@
+<%- include('partials/header') %>
+
+<div>
+  <h2> Bienvenue sur O'Quiz </h2>
+  <p>
+
+  Une application sympa pour répondre à questions cool.
+
+  </p>
+</div>
+
+<div class="row">
+
+  <h3>Mon Compte</h3>
+
+</div>
+
+<div class="row">Nom: <%= user.lastname %></div>
+<div class="row">Prénom: <%= user.firstname %> </div>
+<div class="row">Email: <%= user.email %></div>
+<div class="row">Role: <%= user.role %></div>
+
+<%- include('partials/footer') %>

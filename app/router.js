@@ -29,4 +29,6 @@ router.post('/login', userController.loginAction);
 
 router.get('/disconnect', userController.disconnect);
 
+router.get('/profile', userController.profilePage);
+
 module.exports = router;

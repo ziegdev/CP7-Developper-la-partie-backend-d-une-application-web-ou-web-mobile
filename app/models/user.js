@@ -78,7 +78,8 @@ User.init({
   password: sequelize.STRING,
   firstname: sequelize.STRING,
   lastname: sequelize.STRING,
-  status: sequelize.INTEGER
+  status: sequelize.INTEGER,
+  role: sequelize.STRING
 },{
   sequelize: dbConnection,
   tableName: "app_users",
