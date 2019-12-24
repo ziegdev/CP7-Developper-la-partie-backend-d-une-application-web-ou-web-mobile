@@ -16,6 +16,9 @@ app.set('view engine', 'ejs');
 // les statiques
 app.use(express.static('public'));
 
+// on rajoute la gestion des POST body
+app.use(express.urlencoded({extended: true}));
+
 
 // le routage
 const router = require('./app/router');

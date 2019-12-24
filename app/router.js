@@ -24,4 +24,6 @@ router.get('/quizzes/tag/:id', quizzController.listByTag);
 router.get('/signup', userController.signupPage);
 router.get('/login', userController.loginPage);
 
+router.post('/signup', userController.signupAction);
+
 module.exports = router;
