@@ -86,6 +86,11 @@ const userController = {
       // et on repart sur la page d'accueil
       return res.redirect('/');
     });
+  },
+
+  disconnect: (req, res) => {
+    req.session.user = false;
+    return res.redirect('/');
   }
 
 };
