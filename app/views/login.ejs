@@ -10,6 +10,14 @@
   </p>
 </div>
 
+<% if(locals.error) { %>
+  <div class="row">
+    <div class="error">
+      <%= error %>
+    </div>
+  </div>
+<% } %>
+
 <div class="row">
 
 <form action="" method="POST">

@@ -55,6 +55,37 @@ const userController = {
 
   loginPage: (req, res) => {
     res.render('login');
+  },
+
+  loginAction: (req, res) => {
+    //    console.log(req.body);
+    // on tente de récupérer l'utilisateur qui possède l'email donné
+    User.findOne({
+      where: {
+        email: req.body.email
+      }
+    }).then( (user) => {
+      if (!user) {
+        return res.render('login',{
+          error: "Cet email n'existe pas."
+        });
+      }
+
+      // Si on a un utilisateur, on teste si le mot de passe est valide
+      const validPwd = bcrypt.compareSync(req.body.password, user.getPassword() );
+      if (!validPwd) {
+        return res.render('login',{
+          error: "Ce n'est pas le bon mot de passe."
+        });
+      }
+
+      // si tout va bien, on met l'utilisateur en session...
+      req.session.user = user;
+      //... mais on supprime son mdp !
+      delete req.session.user.password;
+      // et on repart sur la page d'accueil
+      return res.redirect('/');
+    });
   }
 
 };

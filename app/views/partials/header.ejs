@@ -33,33 +33,34 @@
                         </a>
                     </li>
 
-                    <li>
-                        <a href="/signup">
-                            <i></i>
-                            S'inscrire
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/login">
-                            <i></i>
-                            Se connecter
-                        </a>
-                    </li>
+                    <% if(user) { %>
+                        <li>
+                            <a href="#">
+                                <i></i>
+                                Mon compte
+                            </a>
+                        </li>
 
-                    <%# On réaffichera ces liens quand on aura géré la connexion utilisateur %>
-                    <!-- <li>
-                        <a href="#">
-                            <i></i>
-                            Mon compte
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            <i></i>
-                            Déconnexion
-                        </a>
-                    </li> -->
+                        <li>
+                            <a href="#">
+                                <i></i>
+                                Déconnexion
+                            </a>
+                        </li>
+                    <% } else { %>
+                        <li>
+                            <a href="/signup">
+                                <i></i>
+                                S'inscrire
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/login">
+                                <i></i>
+                                Se connecter
+                            </a>
+                        </li>
+                    <% } %>
 
                     <li>
                         <a href="/tags">
