@@ -4,6 +4,7 @@ const express = require('express');
 const mainController = require('./controllers/mainController');
 const quizzController = require('./controllers/quizzController');
 const tagController = require('./controllers/tagController');
+const userController = require('./controllers/userController');
 
 const router = express.Router();
 
@@ -18,5 +19,9 @@ router.get('/tags', tagController.tagList);
 
 // quizzes par tag
 router.get('/quizzes/tag/:id', quizzController.listByTag);
+
+// user signup/login
+router.get('/signup', userController.signupPage);
+router.get('/login', userController.loginPage);
 
 module.exports = router;
