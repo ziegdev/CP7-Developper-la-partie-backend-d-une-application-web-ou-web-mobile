@@ -8,22 +8,21 @@ const userController = {
     res.render('signup');
   },
 
-  signupAction: (req, res) => {
-    // les vérifs à faire : 
+  signupAction: async (req, res) => {
+    try {
+      // les vérifs à faire : 
 
-    // - 1: l'utilisateur existe déjà
-    User.findOne({
-      where: {
-        email: req.body.email
-      }
-    }).then( (user) => {
-      console.log(user);
+      // - 1: l'utilisateur existe déjà
+      const user = await User.findOne({
+        where: {
+          email: req.body.email
+        }
+      });
       if (user) {
         return res.render('signup', {
           error: "Cet email est déjà utilisé par un utilisateur."
         });
-      }
-
+      }    
       // - 2: format d'email valide
       if (!emailValidator.validate(req.body.email)) {
         return res.render('signup', {
@@ -47,24 +46,27 @@ const userController = {
       newUser.setStatus(1);
       const encryptedPwd = bcrypt.hashSync(req.body.password, 10);
       newUser.setPassword(encryptedPwd);
-      newUser.save().then( () => {
-        res.redirect('/login');
-      });
-    });
+      // on attend que l'utilisateur soit enregistré
+      await newUser.save()
+      res.redirect('/login');
+    } catch (err) {
+      res.status(500).send(err);
+    }  
   },
 
   loginPage: (req, res) => {
     res.render('login');
   },
 
-  loginAction: (req, res) => {
-    //    console.log(req.body);
-    // on tente de récupérer l'utilisateur qui possède l'email donné
-    User.findOne({
-      where: {
-        email: req.body.email
-      }
-    }).then( (user) => {
+  loginAction: async (req, res) => {
+    try {
+      //    console.log(req.body);
+      // on tente de récupérer l'utilisateur qui possède l'email donné
+      const user = await User.findOne({
+        where: {
+          email: req.body.email
+        }
+      });
       if (!user) {
         return res.render('login',{
           error: "Cet email n'existe pas."
@@ -85,7 +87,10 @@ const userController = {
       delete req.session.user.password;
       // et on repart sur la page d'accueil
       return res.redirect('/');
-    });
+
+    } catch (err) {
+      res.status(500).send(err);
+    }
   },
 
   disconnect: (req, res) => {
