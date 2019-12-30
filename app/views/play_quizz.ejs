@@ -1,0 +1,53 @@
+<%- include('partials/header') %>
+
+<div>
+    <h2> <%= quizz.getTitle() %>
+        <span><%= quizz.questions.length %> questions</span>
+    </h2>
+</div>
+
+<div>
+ <% for (let tag of quizz.tags){ %>
+    <span class="tag tag--<%= tag.getName().toLowerCase() %>"><%= tag.getName() %></span>
+ <% } %>
+</div>
+
+
+<div>
+    <h4> 
+        <%= quizz.getDescription() %>
+    </h4>
+</div>
+
+<div>
+    <p>by <%= quizz.author.getFullName() %></p>
+</div>
+
+<form class="row"  action="/quizz/<%= quizz.id %>" method="post">
+
+    <% for(let question of quizz.questions) { %> 
+
+      <div class="col question">
+          <span class="level level--<%= question.level.getName().toLowerCase() %>"><%= question.level.getName() %></span>
+          <div class="question__question">
+              <%= question.getQuestion() %>
+          </div>
+            <ul>
+                <% for(let index in question.answers){ %>
+                    <li>
+                        <label for="answer_<%= question.id %>_<%= question.answers[index].id %>">
+                            <!-- Astuce: mettre le input DANS le label permet de pouvoir cliquer partout -->
+                            <input type="radio" name="question_<%= question.id %>" id="answer_<%= question.id %>_<%= question.answers[index].id %>" value="<%= question.answers[index].id %>">
+                            <%= question.answers[index].getDescription() %>
+                        </label>
+                    </li>
+                <% } %>
+            </ul> 
+      </div>
+
+    
+    <% } %>
+  
+</form>
+
+<%- include('partials/footer') %>

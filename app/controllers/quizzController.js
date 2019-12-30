@@ -13,7 +13,11 @@ const quizzController = {
           { association: 'tags'}
         ]
       });
-      res.render('quizz', {quizz});
+      if (req.session.user) {
+        res.render('play_quizz', {quizz});
+      } else {
+        res.render('quizz', {quizz});
+      }
     } catch (err) {
       res.status(500).send(err);
     }
