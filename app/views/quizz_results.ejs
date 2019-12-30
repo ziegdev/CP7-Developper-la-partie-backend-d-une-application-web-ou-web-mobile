@@ -1,0 +1,70 @@
+<%- include('partials/header') %>
+
+<div>
+    <h2> <%= quizz.getTitle() %>
+        <span><%= quizz.questions.length %> questions</span>
+    </h2>
+</div>
+
+<div>
+ <% for (let tag of quizz.tags){ %>
+    <span class="tag tag--<%= tag.getName().toLowerCase() %>"><%= tag.getName() %></span>
+ <% } %>
+</div>
+
+
+<div>
+    <h4> 
+        <%= quizz.getDescription() %>
+    </h4>
+</div>
+
+<div>
+    <p>by <%= quizz.author.getFullName() %></p>
+</div>
+
+<div class="row">
+    <h3>Vous avez obtenu : <%= points %>/<%= quizz.questions.length %> Points</h3>
+</div>
+
+<div class="row">
+
+    <% for(let question of quizz.questions) { %> 
+
+      <div class="col question">
+          <span class="level level--<%= question.level.getName().toLowerCase() %>"><%= question.level.getName() %></span>
+          <div class="question__question">
+              <%= question.getQuestion() %>
+          </div>
+          <div>
+              <ul>
+                <% for(let index in question.answers){ %>
+                    <% if (question.good_answer.id === question.answers[index].id) { %>
+                        <li class="answer--good">
+                    <% } else { %>
+                        <li>
+                    <% } %>
+
+                    <%= parseInt(index) + 1 %>. <%= question.answers[index].getDescription() %>
+
+                    <% if (user_answers["question_"+question.id] == question.answers[index].id) { %>
+                        <% if (user_answers["question_"+question.id] == question.good_answer.id) { %>
+                            <span style="color:green"> &#10004; </span>
+                        <% } else { %>
+                            <span style="color:red"> X </span>
+                        <% } %>
+
+                    <% } %>
+
+                    </li>
+                <% } %>
+              </ul> 
+          </div>
+      </div>
+
+    
+    <% } %>
+  
+</div>
+
+<%- include('partials/footer') %>

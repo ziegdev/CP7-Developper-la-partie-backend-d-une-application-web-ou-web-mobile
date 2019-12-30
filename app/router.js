@@ -17,6 +17,7 @@ router.get('/', mainController.homePage);
 
 // page "quizz"
 router.get('/quizz/:id', quizzController.quizzPage);
+router.post('/quizz/:id', quizzController.playQuizz);
 
 // page "tags" ("sujets")
 router.get('/tags', tagController.tagList);
