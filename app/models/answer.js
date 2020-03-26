@@ -1,7 +1,7 @@
-const sequelize = require('sequelize');
-const dbConnection = require('../dbConnection');
+const Sequelize = require('sequelize');
+const sequelize = require('../database');
 
-class Answer extends sequelize.Model {
+class Answer extends Sequelize.Model {
 
   getDescription() {
     return this.description;
@@ -27,26 +27,26 @@ class Answer extends sequelize.Model {
     }
   };
 
-  getQuestionsId() {
-    return this.questions_id;
+  getQuestionId() {
+    return this.question_id;
   };
 
-  setQuestionsId(value) {
+  setQuestionId(value) {
     if (!Number.isInteger(value)) {
       throw Error('Answer.questions_id must be an integer');
     } else {
-      this.questions_id = value;
+      this.question_id = value;
     }
   };
 
 };
 
 Answer.init({
-  description: sequelize.STRING,
-  status: sequelize.INTEGER
+  description: Sequelize.STRING,
+  status: Sequelize.INTEGER
 },{
-  sequelize: dbConnection,
-  tableName: "answers",
+  sequelize,
+  tableName: "answer",
   createdAt: "created_at",
   updatedAt: "updated_at"
 });

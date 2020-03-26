@@ -1015,10 +1015,9 @@ COMMIT;
 
 /* PostGres DOES NOT INCREMENT when inserting with explicit id values ! */
 /* So we have to correctly set the value used for autoincrement */
-SELECT setval('levels_id_seq', (SELECT MAX(id) from "levels"));
-SELECT setval('answers_id_seq', (SELECT MAX(id) from "answers"));
-SELECT setval('app_users_id_seq', (SELECT MAX(id) from "app_users"));
-SELECT setval('questions_id_seq', (SELECT MAX(id) from "questions"));
-SELECT setval('quizzes_id_seq', (SELECT MAX(id) from "quizzes"));
-SELECT setval('quizzes_id_seq', (SELECT MAX(id) from "quizzes"));
-SELECT setval('tags_id_seq', (SELECT MAX(id) from "tags"));
+SELECT setval('level_id_seq', (SELECT MAX(id) from "levels"));
+SELECT setval('answer_id_seq', (SELECT MAX(id) from "answers"));
+SELECT setval('app_user_id_seq', (SELECT MAX(id) from "app_users"));
+SELECT setval('question_id_seq', (SELECT MAX(id) from "questions"));
+SELECT setval('quizz_id_seq', (SELECT MAX(id) from "quizzes"));
+SELECT setval('tag_id_seq', (SELECT MAX(id) from "tags"));

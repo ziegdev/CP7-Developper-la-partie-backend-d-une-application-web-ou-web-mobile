@@ -3,11 +3,11 @@
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Table "levels"
+-- Table "level"
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS "levels" ;
+DROP TABLE IF EXISTS "level" ;
 
-CREATE TABLE IF NOT EXISTS "levels" (
+CREATE TABLE IF NOT EXISTS "level" (
   "id" SERIAL NOT NULL,
   "name" VARCHAR(32) NOT NULL,
   "status" INT NOT NULL DEFAULT 0,
@@ -17,26 +17,26 @@ CREATE TABLE IF NOT EXISTS "levels" (
 
 
 -- -----------------------------------------------------
--- Table "answers"
+-- Table "answer"
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS "answers" ;
+DROP TABLE IF EXISTS "answer" ;
 
-CREATE TABLE IF NOT EXISTS "answers" (
+CREATE TABLE IF NOT EXISTS "answer" (
   "id" SERIAL NOT NULL,
   "description" VARCHAR(255) NOT NULL,
   "status" INT NOT NULL DEFAULT 0,
   "created_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   "updated_at" TIMESTAMP NULL,
-  "questions_id" INT NOT NULL,
+  "question_id" INT NOT NULL,
   PRIMARY KEY ("id"));
 
 
 -- -----------------------------------------------------
--- Table "app_users"
+-- Table "app_user"
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS "app_users" ;
+DROP TABLE IF EXISTS "app_user" ;
 
-CREATE TABLE IF NOT EXISTS "app_users" (
+CREATE TABLE IF NOT EXISTS "app_user" (
   "id" SERIAL NOT NULL,
   "email" VARCHAR(255) NOT NULL,
   "password" VARCHAR(60) NOT NULL,
@@ -49,27 +49,27 @@ CREATE TABLE IF NOT EXISTS "app_users" (
 
 
 -- -----------------------------------------------------
--- Table "quizzes"
+-- Table "quizz"
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS "quizzes" ;
+DROP TABLE IF EXISTS "quizz" ;
 
-CREATE TABLE IF NOT EXISTS "quizzes" (
+CREATE TABLE IF NOT EXISTS "quizz" (
   "id" SERIAL NOT NULL,
   "title" VARCHAR(64) NOT NULL,
   "description" VARCHAR(255) NULL,
   "status" INT NOT NULL DEFAULT 0,
   "created_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   "updated_at" TIMESTAMP NULL,
-  "app_users_id" INT NOT NULL,
+  "app_user_id" INT NOT NULL,
   PRIMARY KEY ("id"));
 
 
 -- -----------------------------------------------------
--- Table "questions"
+-- Table "question"
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS "questions" ;
+DROP TABLE IF EXISTS "question" ;
 
-CREATE TABLE IF NOT EXISTS "questions" (
+CREATE TABLE IF NOT EXISTS "question" (
   "id" SERIAL NOT NULL,
   "question" VARCHAR(255) NOT NULL,
   "anecdote" TEXT NULL,
@@ -77,18 +77,18 @@ CREATE TABLE IF NOT EXISTS "questions" (
   "status" INT NOT NULL DEFAULT 0,
   "created_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   "updated_at" TIMESTAMP NULL,
-  "levels_id" INT NOT NULL,
-  "answers_id" INT NOT NULL, /* COMMENT 'Id de la bonne réponse',*/
-  "quizzes_id" INT NOT NULL,
+  "level_id" INT NOT NULL,
+  "answer_id" INT NOT NULL, /* COMMENT 'Id de la bonne réponse',*/
+  "quizz_id" INT NOT NULL,
   PRIMARY KEY ("id"));
 
 
 -- -----------------------------------------------------
--- Table "tags"
+-- Table "tag"
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS "tags" ;
+DROP TABLE IF EXISTS "tag" ;
 
-CREATE TABLE IF NOT EXISTS "tags" (
+CREATE TABLE IF NOT EXISTS "tag" (
   "id" SERIAL NOT NULL,
   "name" VARCHAR(64) NOT NULL,
   "status" INT NOT NULL DEFAULT 0,
@@ -98,12 +98,12 @@ CREATE TABLE IF NOT EXISTS "tags" (
 
 
 -- -----------------------------------------------------
--- Table "quizzes_has_tags"
+-- Table "quizz_has_tag"
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS "quizzes_has_tags" ;
+DROP TABLE IF EXISTS "quizz_has_tag" ;
 
-CREATE TABLE IF NOT EXISTS "quizzes_has_tags" (
-  "quizzes_id" INT NOT NULL,
-  "tags_id" INT NOT NULL,
+CREATE TABLE IF NOT EXISTS "quizz_has_tag" (
+  "quizz_id" INT NOT NULL,
+  "tag_id" INT NOT NULL,
   "created_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY ("quizzes_id", "tags_id"));
+  PRIMARY KEY ("quizz_id", "tag_id"));

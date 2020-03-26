@@ -1,5 +1,5 @@
-const sequelize = require('sequelize');
-const dbConnection = require('../dbConnection');
+const Sequelize = require('sequelize');
+const sequelize = require('../database');
 
 /**
  * On importe les models dont on aura besoin pour les relations
@@ -10,7 +10,7 @@ const User = require('./user');
 const Question = require('./question');
 const Tag = require('./tag');
 
-class Quizz extends sequelize.Model {
+class Quizz extends Sequelize.Model {
 
   getId() {
     return this.id;
@@ -71,12 +71,12 @@ class Quizz extends sequelize.Model {
 
 // Initialisation façon Sequelize (cf. Level pour plus de détails)
 Quizz.init({
-  title: sequelize.STRING,
-  description: sequelize.STRING,
-  status: sequelize.INTEGER
+  title: Sequelize.STRING,
+  description: Sequelize.STRING,
+  status: Sequelize.INTEGER
 },{
-  sequelize: dbConnection,
-  tableName: "quizzes",
+  sequelize,
+  tableName: "quizz",
   createdAt: "created_at",
   updatedAt: "updated_at"
 });
@@ -87,25 +87,25 @@ Quizz.init({
 
 // User : "un Quizz appartient à un User"
 Quizz.belongsTo(User,{
-  foreignKey: "app_users_id",
+  foreignKey: "app_user_id",
   as: "author"
 });
 
 // ...et la réciproque : "un User possède plusieurs Quizz"
 User.hasMany(Quizz,{
-  foreignKey:"app_users_id",
+  foreignKey:"app_user_id",
   as: "quizzes"
 });
 
 
 // Question : "un Quizz possède plusieurs Questions"
 Quizz.hasMany(Question, {
-  foreignKey: "quizzes_id",
+  foreignKey: "quizz_id",
   as: "questions"
 });
 // et la réciproque: "une Question appartient à un seul Quizz"
 Question.belongsTo(Quizz,{
-  foreignKey: "quizzes_id",
+  foreignKey: "quizz_id",
   as: "quizz"
 });
 
@@ -114,17 +114,17 @@ Question.belongsTo(Quizz,{
 // "Un Quizz possède plusieurs tags"
 Quizz.belongsToMany(Tag,{
   as: "tags", // alias de l'association 
-  through: 'quizzes_has_tags', // "via la table de liaison qui s'appelle ..."
-  foreignKey: 'quizzes_id', // le nom de la clef de Quizz dans la table de liaison
-  otherKey: 'tags_id', // le nom de la clef de "l'autre" (donc Tag)
+  through: 'quizz_has_tag', // "via la table de liaison qui s'appelle ..."
+  foreignKey: 'quizz_id', // le nom de la clef de Quizz dans la table de liaison
+  otherKey: 'tag_id', // le nom de la clef de "l'autre" (donc Tag)
   timestamps: false // on désactive les timestamps sur la table de liaison
 });
 // ... et la réciproque !
 Tag.belongsToMany(Quizz,{
-  as: "quizzes",
-  through: 'quizzes_has_tags',
-  otherKey: 'quizzes_id',
-  foreignKey: 'tags_id',
+  as: "quizz",
+  through: 'quizz_has_tag',
+  otherKey: 'quizz_id',
+  foreignKey: 'tag_id',
   timestamps: false
 });
 

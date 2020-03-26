@@ -4,8 +4,8 @@
  * 
  */
 
-const sequelize = require('sequelize');
+const {Sequelize} = require('sequelize');
 
-const dbConnection = new sequelize.Sequelize(process.env.PGSQL_URL);
+const sequelize = new Sequelize(process.env.PG_URL);
 
-module.exports = dbConnection;
+module.exports = sequelize;

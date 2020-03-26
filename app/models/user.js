@@ -1,8 +1,8 @@
 const emailValidator = require('email-validator');
-const sequelize = require('sequelize');
-const dbConnection = require('../dbConnection');
+const Sequelize = require('sequelize');
+const sequelize = require('../database');
 
-class User extends sequelize.Model {
+class User extends Sequelize.Model {
 
   getEmail() {
     return this.email;
@@ -74,15 +74,14 @@ class User extends sequelize.Model {
 };
 
 User.init({
-  email: sequelize.STRING,
-  password: sequelize.STRING,
-  firstname: sequelize.STRING,
-  lastname: sequelize.STRING,
-  status: sequelize.INTEGER,
-  role: sequelize.STRING
+  email: Sequelize.STRING,
+  password: Sequelize.STRING,
+  firstname: Sequelize.STRING,
+  lastname: Sequelize.STRING,
+  status: Sequelize.INTEGER
 },{
-  sequelize: dbConnection,
-  tableName: "app_users",
+  sequelize,
+  tableName: "app_user",
   createdAt: "created_at",
   updatedAt: "updated_at"
 });

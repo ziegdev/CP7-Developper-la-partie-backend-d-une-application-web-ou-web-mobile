@@ -1,7 +1,7 @@
-const sequelize = require('sequelize');
-const dbConnection = require('../dbConnection');
+const Sequelize = require('sequelize');
+const sequelize = require('../database');
 
-class Tag extends sequelize.Model {
+class Tag extends Sequelize.Model {
 
   getName() {
     return this.name;
@@ -29,11 +29,11 @@ class Tag extends sequelize.Model {
 };
 
 Tag.init({
-  name: sequelize.STRING,
-  status: sequelize.INTEGER
+  name: Sequelize.STRING,
+  status: Sequelize.INTEGER
 },{
-  sequelize: dbConnection,
-  tableName: "tags",
+  sequelize,
+  tableName: "tag",
   createdAt: "created_at",
   updatedAt: "updated_at"
 });

@@ -1,10 +1,10 @@
-const sequelize = require('sequelize');
-const dbConnection = require('../dbConnection');
+const Sequelize = require('sequelize');
+const sequelize = require('../database');
 
 const Answer = require('./answer');
 const Level = require('./level');
 
-class Question extends sequelize.Model {
+class Question extends Sequelize.Model {
 
   getQuestion() {
     return this.question;
@@ -60,13 +60,13 @@ class Question extends sequelize.Model {
 
 
 Question.init({
-  question: sequelize.STRING,
-  anecdote: sequelize.STRING,
-  wiki: sequelize.STRING,
-  status: sequelize.INTEGER
+  question: Sequelize.STRING,
+  anecdote: Sequelize.STRING,
+  wiki: Sequelize.STRING,
+  status: Sequelize.INTEGER
 },{
-  sequelize: dbConnection,
-  tableName: "questions",
+  sequelize,
+  tableName: "question",
   createdAt: "created_at",
   updatedAt: "updated_at"
 });
@@ -76,33 +76,33 @@ Question.init({
 
 // une question a plusieurs answers
 Question.hasMany(Answer,{
-  foreignKey: "questions_id",
+  foreignKey: "question_id",
   as: "answers"
 });
 
 // réciproque : une answer est lié à une seule question
 Answer.belongsTo(Question,{
-  foreignKey: "questions_id",
+  foreignKey: "question_id",
   as: "question"
 });
 
 // ATTENTION cas particulier : Question et Answer sont liés de 2 manières différentes!
 // en effet, il y a aussi "la bonne réponse" !
 Question.belongsTo(Answer,{
-  foreignKey: "answers_id",
+  foreignKey: "answer_id",
   as:"good_answer"
 });
 
 
 // une question a un niveau
 Question.belongsTo(Level,{
-  foreignKey: "levels_id",
+  foreignKey: "level_id",
   as: "level"
 });
 // réciproque : un niveau concerne plusieurs questions
 Level.hasMany(Question, {
-  foreignKey: "levels_id",
-  as: "questions"
+  foreignKey: "level_id",
+  as: "question"
 });
 
 
