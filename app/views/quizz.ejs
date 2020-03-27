@@ -1,8 +1,8 @@
 <%- include('partials/header') %>
 
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <h2 class="h1 display-4"><%= quizz.getTitle() %></h2>
-    <p class="lead"><%= quizz.getDescription() %></p>
+    <h2 class="h1 display-4"><%= quizz.title %></h2>
+    <p class="lead"><%= quizz.description %></p>
     <p class="font-weight-bold">par <%= quizz.author.getFullName() %></p>
     <p class="lead"><%= quizz.questions.length %> questions</p>
 </div>
@@ -11,8 +11,8 @@
 
     <% for (let tag of quizz.tags) { %>
     <div class="col-3 p-4 text-center">
-        <a class="btn btn-block btn-lg tag tag--<%= tag.getName().toLowerCase() %>" href="/quizzes/tag/<%= tag.id %>">
-            <%= tag.getName() %>
+        <a class="btn btn-block btn-lg tag tag--<%= tag.name.toLowerCase() %>" href="/quizzes/tag/<%= tag.id %>">
+            <%= tag.name %>
         </a>
     </div>
     <% } %>
@@ -24,13 +24,13 @@
     <% for(let question of quizz.questions) { %>
 
     <div class="col-12">
-        <label class="badge level level--<%= question.level.getName().toLowerCase() %>"><%= question.level.getName() %></label>
+        <label class="badge level level--<%= question.level.name.toLowerCase() %>"><%= question.level.name %></label>
         <h4>
-            <%= question.getQuestion() %>
+            <%= question.question %>
         </h4>
         <ul>
             <% for(let index in question.answers){ %>
-            <li><%= parseInt(index) + 1 %>. <%= question.answers[index].getDescription() %></li>
+            <li><%= parseInt(index) + 1 %>. <%= question.answers[index].description %></li>
             <% } %>
         </ul>
     </div>

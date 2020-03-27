@@ -1,5 +1,4 @@
-const Quizz = require('../models/quizz');
-const Tag = require('../models/tag');
+const {Quizz, Tag} = require('../models');
 
 const quizzController = {
 
@@ -30,7 +29,7 @@ const quizzController = {
       const tagId = parseInt(req.params.id);
       const tag = await Tag.findByPk(tagId,{
         include: [{
-          association: 'quizz',
+          association: 'quizzes',
           include: ['author']
         }]
       });

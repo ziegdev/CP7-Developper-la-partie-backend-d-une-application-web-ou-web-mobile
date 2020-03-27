@@ -1,4 +1,4 @@
-const User = require('../models/user');
+const {User} = require('../models');
 const emailValidator = require('email-validator');
 const bcrypt = require('bcrypt');
 
@@ -38,14 +38,16 @@ const userController = {
       }
       // - 4: Si on avait le courage, vérifier que le mdp répond aux recommendations CNIL...
 
-      // Si on est tout bon, on crée le User !
-      let newUser = new User();
-      newUser.setFirstName(req.body.firstname);
-      newUser.setLastName(req.body.lastname);
-      newUser.setEmail(req.body.email);
-      newUser.setStatus(1);
       const encryptedPwd = await bcrypt.hash(req.body.password, 10);
-      newUser.setPassword(encryptedPwd);
+
+      // Si on est tout bon, on crée le User !
+      let newUser = new User({
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        email: req.body.email,
+        password: encryptedPwd,
+        status: 1,
+      });
       // on attend que l'utilisateur soit enregistré
       await newUser.save()
       res.redirect('/login');
@@ -74,7 +76,7 @@ const userController = {
       }
 
       // Si on a un utilisateur, on teste si le mot de passe est valide
-      const validPwd = bcrypt.compareSync(req.body.password, user.getPassword() );
+      const validPwd = bcrypt.compareSync(req.body.password, user.password);
       if (!validPwd) {
         return res.render('login',{
           error: "Ce n'est pas le bon mot de passe."
@@ -89,6 +91,7 @@ const userController = {
       return res.redirect('/');
 
     } catch (err) {
+      console.trace(err);
       res.status(500).send(err);
     }
   },

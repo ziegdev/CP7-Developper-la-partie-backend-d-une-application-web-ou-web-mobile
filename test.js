@@ -2,12 +2,7 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
-const Quizz = require('./app/models/quizz');
-const User = require('./app/models/user');
-const Question = require('./app/models/question');
-const Answer = require('./app/models/answer');
-const Level = require('./app/models/level');
-const Tag = require('./app/models/tag');
+const {Answer, Level, Question, Quizz, Tag, User} = require('./app/models');
 
 /**
  * Test des relations
@@ -42,9 +37,13 @@ const Tag = require('./app/models/tag');
 
   /* Question <-> Answer */
 //  Question.findByPk(1,{
-//    include: ["answer"]
+//    include: ["answers", "good_answer"]
 //  }).then( (question) => {
-//    console.log(question);
+//    console.log(question.getQuestion());
+//    for (let answer of question.answers) {
+//      console.log(answer.getDescription());
+//    }
+//    console.log("la bonne réponse est : "+ question.good_answer.getDescription());
 //  });
 
 // Answer.findByPk(1,{

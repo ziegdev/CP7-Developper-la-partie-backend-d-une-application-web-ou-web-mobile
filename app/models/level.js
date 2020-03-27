@@ -3,37 +3,7 @@ const Sequelize = require('sequelize');
 const sequelize = require('../database');
 
 // Maintenant, nos modèles héritent du "Model" de sequelize, et non plus de notre CoreModel.
-class Level extends Sequelize.Model {
-  /** IMPORTANT: A cause du fonctionnement de Sequelize, les models
-   * ne doivent avoir ni propriétés, ni constructeur !!
-   * Par contre, on garde les méthodes (dont les getters/setters).
-   */
-
-  getName() {
-    return this.name;
-  };
-
-  setName(value) {
-    if(typeof value !== "string") {
-      throw Error('Level.name must be a string');
-    } else {
-      this.name = value;
-    }
-  };
-
-  getStatus() {
-    return this.status;
-  };
-
-  setStatus(value) {
-    if (!Number.isInteger(value)) {
-      throw Error('Level.status must be an integer');
-    } else {
-      this.status = value;
-    }
-  };
-
-};
+class Level extends Sequelize.Model {};
 
 /**
  * Nécessaire, requis par Sequelize

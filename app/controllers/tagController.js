@@ -1,4 +1,4 @@
-const Tag = require('../models/tag');
+const {Tag} = require('../models');
 
 const tagController = {
   tagList: async (req, res) => {

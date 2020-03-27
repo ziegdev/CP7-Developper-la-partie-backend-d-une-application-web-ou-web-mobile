@@ -1,4 +1,4 @@
-const Quizz = require('../models/quizz');
+const {Quizz} = require('../models');
 
 const mainController = {
 
