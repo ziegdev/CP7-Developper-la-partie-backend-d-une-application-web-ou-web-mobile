@@ -47,7 +47,7 @@ Level.init({
 },{
   // le 2ème paramètre contient les options de connections
   sequelize, // le connecteur
-  tableName: "levels", // nom de la table
+  tableName: "level", // nom de la table
   createdAt: "created_at", // nom des champs "timestamp" pour surcharger les valeurs par défaut
   updatedAt: "updated_at"
 });

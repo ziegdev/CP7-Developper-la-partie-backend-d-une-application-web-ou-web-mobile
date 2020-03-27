@@ -75,10 +75,11 @@ class User extends Sequelize.Model {
 
 User.init({
   email: Sequelize.STRING,
+  role: Sequelize.STRING,
   password: Sequelize.STRING,
   firstname: Sequelize.STRING,
   lastname: Sequelize.STRING,
-  status: Sequelize.INTEGER
+  status: Sequelize.INTEGER 
 },{
   sequelize,
   tableName: "app_user",

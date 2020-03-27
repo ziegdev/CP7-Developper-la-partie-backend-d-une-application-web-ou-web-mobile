@@ -44,7 +44,7 @@ const userController = {
       newUser.setLastName(req.body.lastname);
       newUser.setEmail(req.body.email);
       newUser.setStatus(1);
-      const encryptedPwd = bcrypt.hashSync(req.body.password, 10);
+      const encryptedPwd = await bcrypt.hash(req.body.password, 10);
       newUser.setPassword(encryptedPwd);
       // on attend que l'utilisateur soit enregistré
       await newUser.save()

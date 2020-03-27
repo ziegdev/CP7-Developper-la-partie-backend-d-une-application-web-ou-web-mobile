@@ -30,7 +30,7 @@ const quizzController = {
       const tagId = parseInt(req.params.id);
       const tag = await Tag.findByPk(tagId,{
         include: [{
-          association: 'quizzes',
+          association: 'quizz',
           include: ['author']
         }]
       });

@@ -1,147 +1,99 @@
-body {
-  font-family: Monospace, sans-serif;
+.btn-primary, .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle, .btn-primary.focus, .btn-primary:focus {
   background-color: #f0f;
+  border-color: rgb(199, 0, 199);
 }
 
-h1 {
-  font-size: 3em;
-  margin: 0.325rem 0 1rem;
-  color: blue;
+.btn-primary:hover {
+  background-color: rgb(199, 0, 199);
+  border-color: rgb(151, 0, 151);
 }
 
-h2 {
-  font-size: 2.4em;
-  margin: 0.325rem 0 0.625rem;
-  color: darkblue;
+.bg-primary {
+  background-color: #f0f!important;
 }
 
-h3 {
-  font-size: 2em;
-  margin: 0.325rem 0 0.75rem;
-  color: darkcyan;
-}
-
-p {
-  margin: 0.625rem 0;
-}
-
-a {
-  color: yellowgreen;
-}
-
-.container {
-  width: 900px;
+.form-signin {
+  width: 100%;
+  max-width: 420px;
+  padding: 15px;
   margin: auto;
-  background-color: white;
-  padding: 1.25rem;
-  margin-top: 0.625rem;
-  border: 1px solid palevioletred;
 }
 
-.row {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.row > .col {
-  width: 33%;
-}
-
-.question {
-  margin: 0.625rem 1.25rem;
-}
-
-.question__question {
-  margin: 0.625rem 0;
-  font-weight: bold;
-}
-
-.level {
-  font-size: 0.8em;
+.form-signin, .profile {
+  width: 100%;
+  max-width: 600px;
+  padding: 15px;
+  margin: auto;
 }
 
 .level--beginner,
 .level--débutant {
-  color: darkgreen;
+  color: #28a745;
 }
 
 .level--medium,
 .level--confirmé {
-  color: darkgoldenrod;
+  color: #ffc107;
 }
 
 .level--expert {
-  color: darkred;
+  color: #dc3545;
 }
 
-.question__info {
-  font-style: italic;
-  font-size: 0.8em;
-}
-
-.question__choices {
-  margin: 0.625rem 0;
-}
-
-.btn {
-  display: block;
-  width: 100%;
-  margin: 0.625rem 0;
-  text-align: center;
-  color: red;
-  border: 2px solid red;
-  background-color: yellow;
-  font-size: 1.4em;
-  font-weight: bold;
-  padding: 0.325rem 0;
-  cursor: pointer;
-}
-
-.tag {
-  padding: 5px;
-  display: inline-block;
-  border: 1px solid #ccc;
-  margin: 5px;
-  border-radius: 9px;
-  color: black;
-}
-
+.tag {}
 
 .tag--cinéma {
-  background-color: red;
+  color: #004085;
+  background-color: #cce5ff;
+  border-color: #b8daff;
 }
 
 .tag--technologie {
-  background-color: purple;
+  color: #383d41;
+  background-color: #e2e3e5;
+  border-color: #d6d8db;
 }
 
 .tag--gastronomie {
-  background-color: lightgreen;
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
 }
 
 .tag--littérature {
-  background-color: brown;
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
 }
 
 .tag--histoire {
-  background-color: chartreuse;
+  color: #856404;
+  background-color: #fff3cd;
+  border-color: #ffeeba;
 }
 
 .tag--animaux {
-  background-color: pink;
+  color: #0c5460;
+  background-color: #d1ecf1;
+  border-color: #bee5eb;
 }
 
 .tag--nature {
-  background-color: greenyellow;
+  color: #523e02;
+  background-color: #d3c493;
+  border-color: #c9b579;
 }
 
 .tag--astronomie {
-  background-color: black;
-  color: white;
+  color: #1b1e21;
+  background-color: #d6d8d9;
+  border-color: #c6c8ca;
 }
 
 .tag--géographie {
-  background-color: lightseagreen;
+  color: #0c3b17;
+  background-color: #86a78e;
+  border-color: #889e8d;
 }
 
 .answer--good {

@@ -2,7 +2,7 @@
 
 ## Jour 7 : Atelier Solo, Sprint 3
 
-#### Pouvoir répondre aux questions d’un quiz	
+### Pouvoir répondre aux questions d’un quiz	
 
 - Commencer par dupliquer la view 'quizz'. Renommer la copie "play_quizz"
 - Transformer la view "play_quizz" pour qu'elle contienne un formulaire POST.
@@ -15,42 +15,29 @@
 
 Voici à quoi doit ressembler le HTML "renderisé" : 
 ```HTML
-<div class="col question">
-  <span class="level level--débutant">Débutant</span>
-  <div class="question__question">
-      Dans le film d'animation L'Âge de glace, qu'est-ce qui échappe à l'écureuil Scrat ?
-  </div>
-    <ul>
-      <li>
-          <label for="answer_1_1">
-            <!-- Tous les inputs portent le même "name", qui correspond à l'id de la question. Ainsi on ne peux en choisir qu'un seul (c'est comme ça que fonctionne les radio buttons!) -->
-            <!-- Chaque input porte l'id de la réponse dans son champ "value" -->
-              <input type="radio" name="question_1" id="answer_1_1" value="1">
-              Un gland
-          </label>
-      </li>
-  
-      <li>
-          <label for="answer_1_265">
-              <input type="radio" name="question_1" id="answer_1_265" value="265">
-              Une pierre
-          </label>
-      </li>
-  
-      <li>
-          <label for="answer_1_520">
-              <input type="radio" name="question_1" id="answer_1_520" value="520">
-              Un os
-          </label>
-      </li>
-  
-      <li>
-          <label for="answer_1_775">
-              <input type="radio" name="question_1" id="answer_1_775" value="775">
-              Une bille
-          </label>
-      </li>
-    </ul> 
+<div class="col-12">
+    <label class="badge level level--débutant">Débutant</label>
+    <h4>
+        Dans le film d'animation L'Âge de glace, qu'est-ce qui échappe à l'écureuil Scrat ?
+    </h4>
+    <ul class="list-unstyled ml-5">
+        <li>
+            <input type="radio" name="question_1" id="answer_1_1" value="1">
+            <label for="answer_1_1">Un gland</label>
+        </li>
+        <li>
+            <input type="radio" name="question_1" id="answer_1_2" value="2">
+            <label for="answer_1_2">Une pierre</label>
+        </li>
+        <li>
+            <input type="radio" name="question_1" id="answer_1_3" value="3">
+            <label for="answer_1_3">Un os</label>
+        </li>
+        <li>
+            <input type="radio" name="question_1" id="answer_1_4" value="4">
+            <label for="answer_1_4">Une bille</label>
+        </li>
+    </ul>
 </div>
 ```
 </details>
@@ -59,7 +46,7 @@ Dans la route `/quizz/:id`, tester si un utilisateur est connecté. Si c'est le 
 
 Coder ensuite la route POST qui va gérer la soumission du formulaire.
 
-#### Pouvoir visualiser mon score	
+### Pouvoir visualiser mon score	
 
 Dans la route qui gère la soumission du formulaire, comparer les données utilisateurs aux bonnes réponses des questions du Quizz.
 
@@ -67,11 +54,11 @@ Chaque bonne réponse donne un point (on ne s'occupe pas de la difficulté de la
 
 Renvoyer ensuite une belle view avec le résultat !
 
-#### Pouvoir visualiser les bonnes et mauvaise réponses que j’ai donné
+### Pouvoir visualiser les bonnes et mauvaise réponses que j’ai donné
 
 Modifier la view précédente pour y intégrer quelles étaient les bonnes et les mauvaises réponses de l'utilisateur.
 
-#### Bonus 1 : Ajouter un nouveau Tag
+### Bonus 1 : Ajouter un nouveau Tag
 
 CETTE FONCTIONNALITÉ NE DOIT ÊTRE ACCESSIBLE QU'AUX ADMINS !
 
@@ -79,11 +66,11 @@ CETTE FONCTIONNALITÉ NE DOIT ÊTRE ACCESSIBLE QU'AUX ADMINS !
 - un formulaire
 - ¯\\\_(ツ)_/¯ pour le reste à toi de jouer.
 
-#### Bonus 2 : Modifier un Tag existant
+### Bonus 2 : Modifier un Tag existant
 
 CETTE FONCTIONNALITÉ NE DOIT ÊTRE ACCESSIBLE QU'AUX ADMINS !
 
-#### Bonus 3 (AKA "bonus de la mort") : Associer un Tag à un Quizz
+### Bonus 3 (AKA "bonus de la mort") : Associer un Tag à un Quizz
 
 CETTE FONCTIONNALITÉ NE DOIT ÊTRE ACCESSIBLE QU'AUX ADMINS !
 

@@ -1,52 +1,41 @@
 <%- include('partials/header') %>
 
-<div>
-    <h2> <%= quizz.getTitle() %>
-        <span><%= quizz.questions.length %> questions</span>
-    </h2>
-</div>
-
-<div>
- <% for (let tag of quizz.tags){ %>
-    <span class="tag tag--<%= tag.getName().toLowerCase() %>"><%= tag.getName() %></span>
- <% } %>
-</div>
-
-
-<div>
-    <h4> 
-        <%= quizz.getDescription() %>
-    </h4>
-</div>
-
-<div>
-    <p>by <%= quizz.author.getFullName() %></p>
-</div>
-
-<div class="row">
-    <h3>Vous avez obtenu : <%= points %>/<%= quizz.questions.length %> Points</h3>
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h2 class="h1 display-4"><%= quizz.getTitle() %></h2>
+    <p class="lead"><%= quizz.getDescription() %></p>
+    <p class="font-weight-bold">par <%= quizz.author.getFullName() %></p>
+    <p class="lead">Vous avez obtenu : <%= points %>/<%= quizz.questions.length %> Points</p>
 </div>
 
 <div class="row">
 
-    <% for(let question of quizz.questions) { %> 
+    <% for (let tag of quizz.tags) { %>
+    <div class="col-3 p-4 text-center">
+        <a class="btn btn-block btn-lg tag tag--<%= tag.getName().toLowerCase() %>" href="/quizzes/tag/<%= tag.id %>">
+            <%= tag.getName() %>
+        </a>
+    </div>
+    <% } %>
 
-      <div class="col question">
-          <span class="level level--<%= question.level.getName().toLowerCase() %>"><%= question.level.getName() %></span>
-          <div class="question__question">
-              <%= question.getQuestion() %>
-          </div>
-          <div>
-              <ul>
-                <% for(let index in question.answers){ %>
-                    <% if (question.good_answer.id === question.answers[index].id) { %>
-                        <li class="answer--good">
-                    <% } else { %>
-                        <li>
-                    <% } %>
+</div>
 
+<div class="row">
+
+    <% for(let question of quizz.questions) { %>
+
+    <div class="col-12">
+        <label class="badge level level--<%= question.level.getName().toLowerCase() %>"><%= question.level.getName() %></label>
+        <h4>
+            <%= question.getQuestion() %>
+        </h4>
+        <ul>
+            <% for(let index in question.answers){ %>
+                <% if (question.good_answer.id === question.answers[index].id) { %>
+                    <li class="text-success">
+                <% } else { %>
+                    <li>
+                <% } %>
                     <%= parseInt(index) + 1 %>. <%= question.answers[index].getDescription() %>
-
                     <% if (user_answers["question_"+question.id] == question.answers[index].id) { %>
                         <% if (user_answers["question_"+question.id] == question.good_answer.id) { %>
                             <span style="color:green"> &#10004; </span>
@@ -55,16 +44,14 @@
                         <% } %>
 
                     <% } %>
+                </li>
+            <% } %>
+        </ul>
+    </div>
 
-                    </li>
-                <% } %>
-              </ul> 
-          </div>
-      </div>
 
-    
     <% } %>
-  
+
 </div>
 
 <%- include('partials/footer') %>

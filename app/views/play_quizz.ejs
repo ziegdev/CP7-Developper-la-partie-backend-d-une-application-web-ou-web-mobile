@@ -1,57 +1,47 @@
 <%- include('partials/header') %>
 
-<div>
-    <h2> <%= quizz.getTitle() %>
-        <span><%= quizz.questions.length %> questions</span>
-    </h2>
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h2 class="h1 display-4"><%= quizz.getTitle() %></h2>
+    <p class="lead"><%= quizz.getDescription() %></p>
+    <p class="font-weight-bold">par <%= quizz.author.getFullName() %></p>
+    <p class="lead"><%= quizz.questions.length %> questions</p>
 </div>
 
-<div>
- <% for (let tag of quizz.tags){ %>
-    <span class="tag tag--<%= tag.getName().toLowerCase() %>"><%= tag.getName() %></span>
- <% } %>
-</div>
+<div class="row">
 
-
-<div>
-    <h4> 
-        <%= quizz.getDescription() %>
-    </h4>
-</div>
-
-<div>
-    <p>by <%= quizz.author.getFullName() %></p>
-</div>
-
-<form class="row"  action="/quizz/<%= quizz.id %>" method="post">
-
-    <% for(let question of quizz.questions) { %> 
-
-      <div class="col question">
-          <span class="level level--<%= question.level.getName().toLowerCase() %>"><%= question.level.getName() %></span>
-          <div class="question__question">
-              <%= question.getQuestion() %>
-          </div>
-            <ul>
-                <% for(let index in question.answers){ %>
-                    <li>
-                        <label for="answer_<%= question.id %>_<%= question.answers[index].id %>">
-                            <!-- Astuce: mettre le input DANS le label permet de pouvoir cliquer partout -->
-                            <input type="radio" name="question_<%= question.id %>" id="answer_<%= question.id %>_<%= question.answers[index].id %>" value="<%= question.answers[index].id %>">
-                            <%= question.answers[index].getDescription() %>
-                        </label>
-                    </li>
-                <% } %>
-            </ul> 
-      </div>
-
-    
+    <% for (let tag of quizz.tags) { %>
+    <div class="col-3 p-4 text-center">
+        <a class="btn btn-block btn-lg tag tag--<%= tag.getName().toLowerCase() %>" href="/quizzes/tag/<%= tag.id %>">
+            <%= tag.getName() %>
+        </a>
+    </div>
     <% } %>
 
-    <div class="row" style="width:100%;">
-        <input type="submit" value="Valider">
+</div>
+
+<form action="/quizz/<%= quizz.id %>" method="post" class="row">
+
+    <% for(let question of quizz.questions) { %>
+
+    <div class="col-12">
+        <label class="badge level level--<%= question.level.getName().toLowerCase() %>"><%= question.level.getName() %></label>
+        <h4>
+            <%= question.getQuestion() %>
+        </h4>
+        <ul class="list-unstyled ml-5">
+            <% for(let answer of question.answers){ %>
+                <li>
+                    <input type="radio" name="question_<%= question.id %>" id="answer_<%= question.id %>_<%= answer.id %>" value="<%= answer.id %>">
+                    <label for="answer_<%= question.id %>_<%= answer.id %>"><%= answer.getDescription() %></label>
+                </li>
+            <% } %>
+        </ul>
     </div>
-  
+
+
+    <% } %>
+
+    <button class="btn btn-lg btn-primary btn-block mt-5" type="submit">Valider</button>
 </form>
 
 <%- include('partials/footer') %>
