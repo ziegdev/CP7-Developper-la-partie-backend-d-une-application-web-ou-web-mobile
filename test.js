@@ -39,11 +39,11 @@ const {Answer, Level, Question, Quizz, Tag, User} = require('./app/models');
 //  Question.findByPk(1,{
 //    include: ["answers", "good_answer"]
 //  }).then( (question) => {
-//    console.log(question.getQuestion());
+//    console.log(question.question);
 //    for (let answer of question.answers) {
-//      console.log(answer.getDescription());
+//      console.log(answer.description);
 //    }
-//    console.log("la bonne réponse est : "+ question.good_answer.getDescription());
+//    console.log("la bonne réponse est : "+ question.good_answer.description);
 //  });
 
 // Answer.findByPk(1,{

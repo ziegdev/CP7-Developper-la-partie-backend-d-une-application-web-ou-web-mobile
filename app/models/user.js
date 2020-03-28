@@ -1,4 +1,3 @@
-const emailValidator = require('email-validator');
 const Sequelize = require('sequelize');
 const sequelize = require('../database');
 
