@@ -168,9 +168,8 @@ Ensuite, rajouter 2 méthodes dans CoreModel :
 Level.findBy({name:"difficile"}, callback); // trouve le(s) level(s) dont le nom est "difficile"
 User.findBy({email: "michel@oclock.io"}, callback); // trouve le(s) user(s) dont l'email est "michel@oclock.io"
 Tag.findBy({
-  name: "Histoire",
-  status: 1
-}, callback); // trouve le(s) tag(s) dont le name est "Histoire" ET dont le status est 1.
+  name: "Histoire"
+}, callback); // trouve le(s) tag(s) dont le name est "Histoire".
 
 ```
 </details>
@@ -247,8 +246,7 @@ Le but, c'est d'arriver à faire ça :
 ```js
 
 const monTag = new Tag({
-  name: "un super tag",
-  status: 1
+  name: "un super tag"
 });
 ```
 
@@ -257,7 +255,6 @@ On devrait donc avoir un truc dans ce genre :
 class Tag {
   constructor(obj) {
     this.name = obj.name;
-    this.status = obj.status;
   }
 };
 ```

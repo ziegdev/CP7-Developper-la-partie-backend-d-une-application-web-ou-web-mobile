@@ -7,8 +7,7 @@ class Quizz extends Sequelize.Model {};
 // Initialisation façon Sequelize (cf. Level pour plus de détails)
 Quizz.init({
   title: Sequelize.STRING,
-  description: Sequelize.STRING,
-  status: Sequelize.INTEGER
+  description: Sequelize.STRING
 },{
   sequelize,
   tableName: "quizz",

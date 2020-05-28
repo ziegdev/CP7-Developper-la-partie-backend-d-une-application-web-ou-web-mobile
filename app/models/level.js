@@ -12,8 +12,7 @@ Level.init({
   // Premier paramètre : un objet qui définit le type des champs
   // Remaque : en cas de relation, on ne définit pas les champs "machin_id" !
   //   ils seront définis implicitement lorsqu'on définira nos relations
-  name: Sequelize.STRING,
-  status: Sequelize.INTEGER
+  name: Sequelize.STRING
 },{
   // le 2ème paramètre contient les options de connections
   sequelize, // le connecteur

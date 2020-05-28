@@ -7,8 +7,7 @@ class Question extends Sequelize.Model {};
 Question.init({
   question: Sequelize.STRING,
   anecdote: Sequelize.STRING,
-  wiki: Sequelize.STRING,
-  status: Sequelize.INTEGER
+  wiki: Sequelize.STRING
 },{
   sequelize,
   tableName: "question",

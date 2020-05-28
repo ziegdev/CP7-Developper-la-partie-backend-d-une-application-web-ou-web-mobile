@@ -45,8 +45,7 @@ const userController = {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         email: req.body.email,
-        password: encryptedPwd,
-        status: 1,
+        password: encryptedPwd
       });
       // on attend que l'utilisateur soit enregistré
       await newUser.save()

@@ -10,7 +10,6 @@ DROP TABLE IF EXISTS "level" ;
 CREATE TABLE IF NOT EXISTS "level" (
   "id" SERIAL NOT NULL,
   "name" VARCHAR(32) NOT NULL,
-  "status" INT NOT NULL DEFAULT 0,
   "created_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   "updated_at" TIMESTAMP NULL,
   PRIMARY KEY ("id"));
@@ -24,7 +23,6 @@ DROP TABLE IF EXISTS "answer" ;
 CREATE TABLE IF NOT EXISTS "answer" (
   "id" SERIAL NOT NULL,
   "description" VARCHAR(255) NOT NULL,
-  "status" INT NOT NULL DEFAULT 0,
   "created_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   "updated_at" TIMESTAMP NULL,
   "question_id" INT NOT NULL,
@@ -42,7 +40,6 @@ CREATE TABLE IF NOT EXISTS "app_user" (
   "password" VARCHAR(60) NOT NULL,
   "firstname" VARCHAR(64) NULL,
   "lastname" VARCHAR(64) NULL,
-  "status" INT NOT NULL DEFAULT 0,
   "created_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   "updated_at" TIMESTAMP NULL,
   PRIMARY KEY ("id"));
@@ -57,7 +54,6 @@ CREATE TABLE IF NOT EXISTS "quizz" (
   "id" SERIAL NOT NULL,
   "title" VARCHAR(64) NOT NULL,
   "description" VARCHAR(255) NULL,
-  "status" INT NOT NULL DEFAULT 0,
   "created_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   "updated_at" TIMESTAMP NULL,
   "app_user_id" INT NOT NULL,
@@ -74,7 +70,6 @@ CREATE TABLE IF NOT EXISTS "question" (
   "question" VARCHAR(255) NOT NULL,
   "anecdote" TEXT NULL,
   "wiki" VARCHAR(64) NULL,
-  "status" INT NOT NULL DEFAULT 0,
   "created_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   "updated_at" TIMESTAMP NULL,
   "level_id" INT NOT NULL,
@@ -91,7 +86,6 @@ DROP TABLE IF EXISTS "tag" ;
 CREATE TABLE IF NOT EXISTS "tag" (
   "id" SERIAL NOT NULL,
   "name" VARCHAR(64) NOT NULL,
-  "status" INT NOT NULL DEFAULT 0,
   "created_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   "updated_at" TIMESTAMP NULL,
   PRIMARY KEY ("id"));

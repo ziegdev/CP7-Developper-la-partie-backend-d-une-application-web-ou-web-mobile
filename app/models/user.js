@@ -14,8 +14,7 @@ User.init({
   role: Sequelize.STRING,
   password: Sequelize.STRING,
   firstname: Sequelize.STRING,
-  lastname: Sequelize.STRING,
-  status: Sequelize.INTEGER
+  lastname: Sequelize.STRING
 }, {
   sequelize,
   tableName: "app_user",
