@@ -2,7 +2,7 @@ const express = require('express');
 
 // importer les controllers
 const mainController = require('./controllers/mainController');
-const quizzController = require('./controllers/quizzController');
+const quizController = require('./controllers/quizController');
 const tagController = require('./controllers/tagController');
 const userController = require('./controllers/userController');
 const adminController = require('./controllers/adminController');
@@ -16,14 +16,14 @@ const router = express.Router();
 router.get('/', mainController.homePage);
 
 // page "quizz"
-router.get('/quizz/:id', quizzController.quizzPage);
-router.post('/quizz/:id', quizzController.playQuizz);
+router.get('/quiz/:id', quizController.quizzPage);
+router.post('/quiz/:id', quizController.playQuizz);
 
 // page "tags" ("sujets")
 router.get('/tags', tagController.tagList);
 
 // quizzes par tag
-router.get('/quizzes/tag/:id', quizzController.listByTag);
+router.get('/quizzes/tag/:id', quizController.listByTag);
 
 // user signup/login
 router.get('/signup', userController.signupPage);

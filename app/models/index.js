@@ -1,7 +1,7 @@
 const Answer = require('./answer');
 const Level = require('./level');
 const Question = require('./question');
-const Quizz = require('./quizz');
+const Quiz = require('./quiz');
 const Tag = require('./tag');
 const User = require('./user');
 
@@ -37,47 +37,45 @@ Level.hasMany(Question, {
 });
 
 
-// User : "un Quizz appartient à un User"
-Quizz.belongsTo(User, {
-    foreignKey: "app_user_id",
+// User : "un Quiz appartient à un User"
+Quiz.belongsTo(User, {
+    foreignKey: "user_id",
     as: "author"
 });
 
-// ...et la réciproque : "un User possède plusieurs Quizz"
-User.hasMany(Quizz, {
-    foreignKey: "app_user_id",
+// ...et la réciproque : "un User possède plusieurs Quiz"
+User.hasMany(Quiz, {
+    foreignKey: "user_id",
     as: "quizzes"
 });
 
 
-// Question : "un Quizz possède plusieurs Questions"
-Quizz.hasMany(Question, {
-    foreignKey: "quizz_id",
+// Question : "un Quiz possède plusieurs Questions"
+Quiz.hasMany(Question, {
+    foreignKey: "quiz_id",
     as: "questions"
 });
-// et la réciproque: "une Question appartient à un seul Quizz"
-Question.belongsTo(Quizz, {
-    foreignKey: "quizz_id",
-    as: "quizz"
+// et la réciproque: "une Question appartient à un seul Quiz"
+Question.belongsTo(Quiz, {
+    foreignKey: "quiz_id",
+    as: "quiz"
 });
 
 
-// Quizz <> Tags, via la table de liaison
-// "Un Quizz possède plusieurs tags"
-Quizz.belongsToMany(Tag, {
+// Quiz <> Tags, via la table de liaison
+// "Un Quiz possède plusieurs tags"
+Quiz.belongsToMany(Tag, {
     as: "tags", // alias de l'association 
-    through: 'quizz_has_tag', // "via la table de liaison qui s'appelle ..."
-    foreignKey: 'quizz_id', // le nom de la clef de Quizz dans la table de liaison
+    through: 'quiz_has_tag', // "via la table de liaison qui s'appelle ..."
+    foreignKey: 'quiz_id', // le nom de la clef de Quiz dans la table de liaison
     otherKey: 'tag_id', // le nom de la clef de "l'autre" (donc Tag)
-    timestamps: false // on désactive les timestamps sur la table de liaison
 });
 // ... et la réciproque !
-Tag.belongsToMany(Quizz, {
+Tag.belongsToMany(Quiz, {
     as: "quizzes",
-    through: 'quizz_has_tag',
-    otherKey: 'quizz_id',
-    foreignKey: 'tag_id',
-    timestamps: false
+    through: 'quiz_has_tag',
+    otherKey: 'quiz_id',
+    foreignKey: 'tag_id'
 });
 
-module.exports = { Answer, Level, Question, Quizz, Tag, User };
+module.exports = { Answer, Level, Question, Quiz, Tag, User };

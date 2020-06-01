@@ -7,9 +7,7 @@ Tag.init({
   name: Sequelize.STRING
 },{
   sequelize,
-  tableName: "tag",
-  createdAt: "created_at",
-  updatedAt: "updated_at"
+  tableName: "tag"
 });
 
 // on exporte la class directement !

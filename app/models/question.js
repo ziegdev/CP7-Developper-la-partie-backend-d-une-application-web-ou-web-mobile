@@ -10,9 +10,7 @@ Question.init({
   wiki: Sequelize.STRING
 },{
   sequelize,
-  tableName: "question",
-  createdAt: "created_at",
-  updatedAt: "updated_at"
+  tableName: "question"
 });
 
 

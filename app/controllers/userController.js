@@ -1,4 +1,4 @@
-const {User} = require('../models');
+const { User } = require('../models/');
 const emailValidator = require('email-validator');
 const bcrypt = require('bcrypt');
 
@@ -22,7 +22,7 @@ const userController = {
         return res.render('signup', {
           error: "Cet email est déjà utilisé par un utilisateur."
         });
-      }    
+      }
       // - 2: format d'email valide
       if (!emailValidator.validate(req.body.email)) {
         return res.render('signup', {
@@ -38,21 +38,25 @@ const userController = {
       }
       // - 4: Si on avait le courage, vérifier que le mdp répond aux recommendations CNIL...
 
-      const encryptedPwd = await bcrypt.hash(req.body.password, 10);
+      // 5 - On crypt
+      const salt = await bcrypt.genSalt(10);
+      const encryptedPassword = await bcrypt.hash(req.body.password, salt);
 
       // Si on est tout bon, on crée le User !
-      let newUser = new User({
+      const newUser = new User({
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         email: req.body.email,
-        password: encryptedPwd
+        password: encryptedPassword
       });
+
       // on attend que l'utilisateur soit enregistré
-      await newUser.save()
+      await newUser.save();
       res.redirect('/login');
-    } catch (err) {
+    }catch(err){
+      console.trace(err);
       res.status(500).send(err);
-    }  
+    }
   },
 
   loginPage: (req, res) => {
@@ -69,15 +73,15 @@ const userController = {
         }
       });
       if (!user) {
-        return res.render('login',{
+        return res.render('login', {
           error: "Cet email n'existe pas."
         });
       }
 
       // Si on a un utilisateur, on teste si le mot de passe est valide
-      const validPwd = bcrypt.compareSync(req.body.password, user.password);
+      const validPwd = await bcrypt.compare(req.body.password, user.password);
       if (!validPwd) {
-        return res.render('login',{
+        return res.render('login', {
           error: "Ce n'est pas le bon mot de passe."
         });
       }
@@ -101,10 +105,10 @@ const userController = {
   },
 
   profilePage: (req, res) => {
-    if(!req.session.user) {
+    if (!req.session.user) {
       return res.redirect('/login');
     }
-    
+
     res.render('profile', {
       user: req.session.user
     });

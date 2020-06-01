@@ -1,11 +1,11 @@
-const {Quizz, Tag} = require('../models');
+const { Quiz, Tag } = require('../models');
 
 const quizzController = {
 
   quizzPage: async (req, res) => {
     try {
-      const quizzId = parseInt(req.params.id);
-      const quizz = await Quizz.findByPk(quizzId,{
+      const quizId = parseInt(req.params.id);
+      const quiz = await Quiz.findByPk(quizId,{
         include: [
           { association: 'author'},
           { association: 'questions', include: ['answers', 'level']},
@@ -13,11 +13,12 @@ const quizzController = {
         ]
       });
       if (req.session.user) {
-        res.render('play_quizz', {quizz});
+        res.render('play_quiz', {quiz});
       } else {
-        res.render('quizz', {quizz});
+        res.render('quiz', {quiz});
       }
     } catch (err) {
+      console.trace(err);
       res.status(500).send(err);
     }
   },
@@ -36,6 +37,7 @@ const quizzController = {
       const quizzes = tag.quizzes;
       res.render('index', { quizzes });
     } catch (err) {
+      console.trace(err);
       res.status(500).send(err);
     }
   },
@@ -43,8 +45,8 @@ const quizzController = {
   playQuizz: async (req, res) => { 
     console.log(req.body);
     try {
-      const quizzId = parseInt(req.params.id);
-      const quizz = await Quizz.findByPk(quizzId, {
+      const quizId = parseInt(req.params.id);
+      const quiz = await Quiz.findByPk(quizId, {
         include: [
           { association: 'author'},
           { association: 'questions', include: ['answers', 'level', 'good_answer']},
@@ -54,7 +56,7 @@ const quizzController = {
       // une variable pour compter les points !
       let points = 0;
       // pour chaque question,...
-      for (let question of quizz.questions) {
+      for (let question of quiz.questions) {
         //  on vérifie si on a un input qui correspond (sinon l'utilisateur n'a pas répondu)
         let inputName = "question_"+question.id;
         if (req.body[inputName]) {
@@ -65,13 +67,14 @@ const quizzController = {
         }
       }
 
-      res.render('quizz_results',{
-        quizz,
+      res.render('quiz_results',{
+        quiz,
         points,
         user_answers: req.body
       });
       
     } catch (error) {
+      console.trace(err);
       res.status(500).send(error);
     }
   }

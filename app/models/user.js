@@ -3,7 +3,7 @@ const sequelize = require('../database');
 
 class User extends Sequelize.Model {
 
-  getFullName() {
+  get fullname() {
     return this.firstname + ' ' + this.lastname;
   };
 
@@ -17,9 +17,7 @@ User.init({
   lastname: Sequelize.STRING
 }, {
   sequelize,
-  tableName: "app_user",
-  createdAt: "created_at",
-  updatedAt: "updated_at"
+  tableName: "user"
 });
 
 

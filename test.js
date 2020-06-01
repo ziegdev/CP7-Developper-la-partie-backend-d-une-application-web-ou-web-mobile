@@ -2,32 +2,32 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
-const {Answer, Level, Question, Quizz, Tag, User} = require('./app/models');
+const {Answer, Level, Question, Quiz, Tag, User} = require('./app/models');
 
 /**
  * Test des relations
  */
 
-  /* User <-> Quizz */
+  /* User <-> Quiz */
 // User.findAll({
-//   include: ['quizzes']
+//   include: ['quiz']
 // }).then( (users) => {
 //   for( let user of users) {
-//     console.log(user.getFullName(), user.quizzes.length);
+//     console.log(user.fullname, user.quizzes.length);
 //   }
 // });
 
 
 
-  /* Quizz <-> Question */
-// Quizz.findByPk(1,{
+  /* Quiz <-> Question */
+// Quiz.findByPk(1,{
 //   include: ["questions"]
-// }).then( (quizz) => {
-//   console.log(quizz);
+// }).then( (quiz) => {
+//   console.log(quiz);
 // });
 
 // Question.findByPk(1, {
-//   include: ["quizz"]
+//   include: ["quiz"]
 // }).then( (question) => {
 //   console.log(question);
 // });
@@ -69,33 +69,33 @@ const {Answer, Level, Question, Quizz, Tag, User} = require('./app/models');
 // });
 
 
-  /* Quizz <-> Tag */
-// Quizz.findByPk(1,{
+  /* Quiz <-> Tag */
+// Quiz.findByPk(1,{
 //   include: ["tags"]
-// }).then( (quizz) => {
-//   console.log(quizz);
-//   let tagNames = quizz.tags.map( x=> x.name).join(',');
-//   console.log( `${quizz.title} est assiocié au tags : ${tagNames}` );
+// }).then( (quiz) => {
+//   console.log(quiz);
+//   let tagNames = quiz.tags.map( x=> x.name).join(',');
+//   console.log( `${quiz.title} est assiocié au tags : ${tagNames}` );
 // });
 
 // Tag.findByPk(1,{
-//   include: ["quizzes"]
+//   include: ["quiz"]
 // }).then( (tag) => {
 //   console.log(tag);
-//   console.log( `le Tag ${tag.name} est associé à ${tag.quizzes.length} Quizzes`);
+//   console.log( `le Tag ${tag.name} est associé à ${tag.quiz.length} Quizes`);
 // });
 
 
   /* Tag -> Question -> User */
 Tag.findByPk(1,{
   include: [{
-    association: "quizzes",
+    association: "quiz",
     include: ["author"]
   }]
 }).then( (tag) => {
   let message = '';
-  for (let quizz of tag.quizzes) {
-    message += `${quizz.title}, écrit par ${quizz.author.getFullName()}\n`;
+  for (let quiz of tag.quizzes) {
+    message += `${quiz.title}, écrit par ${quiz.author.fullname}\n`;
   }
 
   console.log( `${tag.name} concerne : \n`+message );

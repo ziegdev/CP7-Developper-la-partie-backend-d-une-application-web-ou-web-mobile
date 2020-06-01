@@ -1,14 +1,15 @@
-const {Quizz} = require('../models');
+const { Quiz } = require('../models/');
 
 const mainController = {
 
   homePage: async (req, res) => {
     try {
-      const quizzes = await Quizz.findAll({
+      const quizzes = await Quiz.findAll({
         include: ['author']
       });
-      res.render('index', {quizzes});
+      res.render('index', { quizzes });
     } catch (err) {
+      console.trace(err);
       res.status(500).send(err);
     }
   }

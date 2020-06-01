@@ -7,9 +7,7 @@ Answer.init({
   description: Sequelize.STRING
 },{
   sequelize,
-  tableName: "answer",
-  createdAt: "created_at",
-  updatedAt: "updated_at"
+  tableName: "answer"
 });
 
 module.exports = Answer;
