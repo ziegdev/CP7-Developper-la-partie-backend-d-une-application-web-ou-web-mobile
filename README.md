@@ -1,6 +1,6 @@
 # OQuizz
 
-## Jour 7 : Atelier Solo, Sprint 3
+## Jour 7 : Parcours, Sprint 3
 
 ### Pouvoir répondre aux questions d’un quiz
 
