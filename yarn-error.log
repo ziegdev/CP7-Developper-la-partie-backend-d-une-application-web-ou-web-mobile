@@ -1,0 +1,66 @@
+Arguments: 
+  /usr/bin/node /usr/local/bin/yarn add express dotenv ejs express-session bcrypt sequelize sanitizer browserify
+
+PATH: 
+  /home/ziegunix/.vscode-server/bin/507ce72a4466fbb27b715c3722558bb15afa9f48/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files/Microsoft SQL Server/120/Tools/Binn/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/Git/cmd:/mnt/c/Users/33674/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/33674/AppData/Local/Programs/Microsoft VS Code/bin
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  14.17.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  SyntaxError: /home/ziegunix/codingFiles/CP-titre-pro/CP7/S5-atelier-solo-ziegdev/package.json: Unexpected token < in JSON at position 269
+      at JSON.parse (<anonymous>)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "OQuizz",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "dependencies": {
+      "bcrypt": "^3.0.7",
+      "dotenv": "^8.2.0",
+      "ejs": "^3.0.1",
+      "email-validator": "^2.0.4",
+      "express": "^4.17.1",
+      "express-session": "^1.17.0",
+  <<<<<<< HEAD
+      "pg": "^7.14.0",
+      "sequelize": "^5.21.3"
+  =======
+      "pg": "^8.3.0",
+      "sequelize": "^6.3.4"
+  >>>>>>> bd6afe51187e3779d42d7c03ed9d14816d3b246b
+    },
+    "devDependencies": {},
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/O-clock-FS-JS/OQuizz.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/O-clock-FS-JS/OQuizz/issues"
+    },
+    "homepage": "https://github.com/O-clock-FS-JS/OQuizz#readme"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
