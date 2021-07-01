@@ -94,4 +94,11 @@
   color: #0c3b17;
   background-color: #86a78e;
   border-color: #889e8d;
+<<<<<<< HEAD
+=======
+}
+
+.answer--good {
+  color: green;
+>>>>>>> bd6afe51187e3779d42d7c03ed9d14816d3b246b
 }

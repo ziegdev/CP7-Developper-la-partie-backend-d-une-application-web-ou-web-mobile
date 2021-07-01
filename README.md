@@ -55,7 +55,7 @@ Chaque bonne réponse donne un point (on ne s'occupe pas de la difficulté de la
 
 Renvoyer ensuite une belle view avec le résultat !
 
-### Pouvoir visualiser les bonnes et mauvaises réponses que j’ai donné
+### Pouvoir visualiser les bonnes et mauvaise réponses que j’ai donné
 
 Modifier la view précédente pour y intégrer quelles étaient les bonnes et les mauvaises réponses de l'utilisateur.
 

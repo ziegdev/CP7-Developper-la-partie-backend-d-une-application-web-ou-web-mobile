@@ -17,6 +17,10 @@ router.get('/', mainController.homePage);
 
 // page "quizz"
 router.get('/quiz/:id', quizController.quizzPage);
+<<<<<<< HEAD
+=======
+router.post('/quiz/:id', quizController.playQuizz);
+>>>>>>> bd6afe51187e3779d42d7c03ed9d14816d3b246b
 
 // page "tags" ("sujets")
 router.get('/tags', tagController.tagList);
